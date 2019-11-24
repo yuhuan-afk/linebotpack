@@ -1,17 +1,22 @@
-# README
+# 讀我
 
-This file is produced and maintained by Yuhuan Kuo
-If there is any problem with the use
-please join My Line yuhuan1998
+本檔案是由Yuhuan Kuo開發和維護的。
 
-©️Yuhuan Kuo 2019~2029 All right reserved.
-Can do commercial use but not illegal.
+如果使用中有任何問題，請加我的Line yuhuan1998
 
-P.S.
-1.LINETCR is from aldidwi, Thx very much!
-2.CONTRIBUTING.md is from GitLib.com.
-3.linetoken is from ningxue520.
-4.Prohibition of unauthorized modification!!
+©️YuhuanKuo 2019〜2029年保留所有權利。 
 
-I will make this file better, 
-thx for your reading!
+可以做合法商業用途。
+
+附註 
+
+1.LINETCR檔案來自aldidwi，非常感謝！ 
+ 
+2.CONTRIBUTING.md來自GitLib.com。  
+
+3.linetoken來自ningxue520。  
+
+4.禁止擅自修改！！
+
+
+我將使這個檔案更好，感謝您閱讀此文件！
