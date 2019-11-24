@@ -10,14 +10,14 @@
 - pkg install git
 - pkg install python2
 - pip2 install rsa
-- pip2 install thrift == 0.9.3
+- pip2 install thrift==0.9.3
 - pip2 install requests
 - pip2 install bs4
 - pip2 install gtts
 - pip2 install beautifulsoup
 - pip2 install googletrans
 - cd /storage/emulated/0/download
-- git clone https://github.com/yuhuan-afk/lnbtpk.git
+- git clone https://github.com/yuhuan-afk/linebotpack.git
 - pkg install nodejs -y
 - pkg install git -y
 - pkg install nano
