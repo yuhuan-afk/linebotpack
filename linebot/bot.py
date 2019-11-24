@@ -2538,7 +2538,7 @@ def bot(op):
                         print "Kick all member"
                         _name = msg.text.replace("Kickall","")
                         gs = yuhuan.getGroup(msg.to)
-                        yuhuan.sendText(msg.to,"凝雪幻滅開始~~~~")
+                        yuhuan.sendText(msg.to,"翻群~~~~")
                         targets = []
                         for g in gs.members:
                             if _name in g.displayName:
