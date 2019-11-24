@@ -1,9 +1,10 @@
-# How To Use
+# 怎麼用？
 
 好問題！
 
 我現在就教你
 
+打開Termux應用並輸入以下命令：
 
 - pkg update
 - pkg install git
