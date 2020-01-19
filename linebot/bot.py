@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-#Yuhuan Line Bot
+# Yuhuan Line Bot
+# Original file by Ningxue
+# Only for Non-commercal use
 
 import LINETCR
 from LINETCR.lib.curve.ttypes import *
@@ -12,12 +14,26 @@ import time,random,sys,json,codecs,threading,glob,urllib,urllib2,urllib3,re,ast,
 
 yuhuan = LINETCR.LINE()
 #yuhuan.login(qr=True)
-yuhuan.login(token='ELs6ZZRgjUUbLkXWIxO5.LDx318968ibUQCMuoJV7Tq.1T37iCHqPLmLENkf11k7iBXCFUy0mRw1v68E1sHIkUE=')
+yuhuan.login(token='enter token')
 yuhuan.loginResult()
-print "=====成功登入Line半垢====="
+
+print "  Linebot Start Successful!"
+print "==============================="
+print "~Only For Non-commercal use!~"
+print "    Bot made by yuhuan"
+print "https://github.com/yuhuan-afk"
+print ""
+print " ~~~~~Contact Developer~~~~~"
+print "Telegram:@KuoHuanHuan"
+print "Line:yuhuan1998"
+print "Discord:huanaustin1019#3380"
+print "==============================="
+print ""
+print "Terminal Traceback Below:"
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
+
 
 
 selfMessage ="""
@@ -25,29 +41,27 @@ selfMessage ="""
 ║       ♓ 基本指令 ♓
 ╠═══════════════
 ╠➩〘Hi〙
-╠➩〘Me〙
-╠➩〘Mymid〙
-╠➩〘Mid @〙
-╠➩〘SearchID (ID LINE)〙
-╠➩〘Checkdate (DD/MM/YY)〙
-╠➩〘Kalender〙
-╠➩〘Steal contact〙
-╠➩〘Pp @〙
-╠➩〘Cover @〙
-╠➩〘Auto like〙
-╠➩〘Scbc Text〙
-╠➩〘Cbc Text〙
-╠➩〘Gbc Text〙
-╠➩〘Bio @〙
-╠➩〘Info @〙
-╠➩〘Name @〙
-╠➩〘Profile @〙
-╠➩〘Contact @〙
-╠➩〘Getvid @〙
-╠➩〘Friendlist〙
-╠➩〘Micadd @〙
-╠➩〘Micdel @〙
-╠➩〘Miclist〙
+╠➩〘Me〙傳送自己友資
+╠➩〘Mymid〙傳送自己MID
+╠➩〘Mid @〙 傳送標記MID
+╠➩〘SearchID (ID LINE)〙功能不詳
+╠➩〘Checkdate (DD/MM/YY)〙功能不詳
+╠➩〘Kalender〙運行時間日/月/年
+╠➩〘Steal contact〙功能不詳
+╠➩〘Pp @〙標記顯示大頭貼
+╠➩〘Scbc Text〙傳20次訊息給某個人
+╠➩〘Cbc Text〙廣播全部好友訊息
+╠➩〘Gbc Text〙功能不詳
+╠➩〘Bio @〙顯示某人自介
+╠➩〘Info @〙顯示某人資訊
+╠➩〘Name @〙顯示某人名字
+╠➩〘Profile @〙顯示某人個人檔案
+╠➩〘Contact @〙傳送某人友資
+╠➩〘Getvid @〙取得被標記的頭貼
+╠➩〘Friendlist〙朋友清單
+╠➩〘Micadd @〙目標添加
+╠➩〘Micdel @〙目標刪除
+╠➩〘Miclist〙目標清單
 ╠═══════════════
 ║        ღ 半垢 ღ
 ╚═══════════════
@@ -57,15 +71,12 @@ botMessage ="""
 ╔═══════════════
 ║       ♓ 半垢機設定 ♓
 ╠═══════════════
-╠➩〘Absen〙
-╠➩〘Respon〙
-╠➩〘Runtime [運行速度]〙
-╠➩〘copy @〙
-╠➩〘Copycontact〙
-╠➩〘Mybackup〙
-╠➩〘Mybio (Text)〙
-╠➩〘Myname (Text)〙
-╠➩〘@bye〙
+╠➩〘Absen〙   功能不詳
+╠➩〘Respon〙 功能不詳
+╠➩〘copy @〙功能不詳
+╠➩〘Copycontact〙功能不詳
+╠➩〘Mybackup〙功能不詳
+╠➩〘@bye〙退出群組
 ╠➩〘Bot on/off [半垢開/關]〙
 ╠═══════════════
 ║        ღ 半垢 ღ
@@ -76,35 +87,21 @@ mediaMessage ="""
 ╔═══════════════
 ║       ♓ 媒體指令 ♓
 ╠═══════════════
-╠➩〘Gift〙
-╠➩〘Giftbycontact〙
-╠➩〘Gif gore〙
-╠➩〘Google (Text)〙
-╠➩〘Playstore NamaApp〙
-╠➩〘Fancytext Text〙
-╠➩〘musik Judul-Penyanyi〙
-╠➩〘lirik Judul-Penyanyi〙
-╠➩〘musrik Judul-Penyanyi〙
-╠➩〘ig UrsnameInstagram〙
-╠➩〘Checkig UrsnameInstagram〙
-╠➩〘停用〙
-╠➩〘停用〙
-╠➩〘停用〙
-╠➩〘停用〙
-╠➩〘停用〙
-╠➩〘Youtube Judul Video [Youtube影片標題]〙
-╠➩〘Youtubevideo Judul Video [Youtube影片標題]〙
-╠➩〘Youtubesearch:0 Judul Video [Youtube搜尋影片]〙
-╠➩〘Image NamaGambar〙
-╠➩〘Say Text〙
-╠➩〘Say-en Text〙
-╠➩〘Say-jp Text〙
-╠➩〘Tr-id Text (Translate En Ke ID〙
-╠➩〘Tr-en Text (Translate ID Ke En〙
-╠➩〘Tr-th Text (Translate ID Ke Th〙
-╠➩〘Id@en Text (Translate ID Ke En〙
-╠➩〘Id@th Text (Translate ID Ke TH〙
-╠➩〘En@id Text (Translate En Ke ID〙
+╠➩〘Gift〙歡迎入群訊息
+╠➩〘Say welcome〙 文字變語音
+╠➩〘Invite creator〙功能不詳
+╠➩〘Tag all〙標記全部
+╠➩〘Cancelall〙功能不詳
+╠➩〘Gcreator〙查看群主傳送友資
+╠➩〘Ginfo〙查看群組資訊
+╠➩〘Gurl〙開啟群組邀請並發送網址
+╠➩〘List group〙功能不詳
+╠➩〘Pict group: [群組名稱]〙功能不詳
+╠➩〘Spam: (文字)〙重複文字十次
+╠➩〘Add all〙功能不詳
+╠➩〘Kick: (Mid)〙透過MID踢人
+╠➩〘Invite: (Mid)〙 打MID邀進群組
+╠➩〘Invite〙 給友資邀請進群
 ╠═══════════════
 ║         ღ 半垢 ღ
 ╚═══════════════
@@ -144,7 +141,7 @@ groupMessage ="""
 ║       ღ 半垢 ღ
 ╚═══════════════
 """
-vip="u95d5f7d7cf7af0806ea9c9943a3bfbb5"
+vip="enter id"
 
 setMessage ="""
 ╔═══════════════
@@ -245,8 +242,8 @@ helpMessage ="""
 KAC=[yuhuan]
 mid = yuhuan.getProfile().mid
 Bots=[mid]
-Creator=["u95d5f7d7cf7af0806ea9c9943a3bfbb5"]
-admin=["u95d5f7d7cf7af0806ea9c9943a3bfbb5"]
+Creator=["enter id"]
+admin=["enter id"]
 
 contact = yuhuan.getProfile()
 backup1 = yuhuan.getProfile()
@@ -878,7 +875,7 @@ def bot(op):
                  if wait["detectMention2"] == True:          
                     contact = yuhuan.getContact(msg.from_)
                     cName = contact.displayName
-                    balas = ["你還標我...",cName + " 再標我不理你了!!"]
+                    balas = ["竟敢打擾老子",cName + " 有什麼事？"]
                     ret_ = random.choice(balas)
                     name = re.findall(r'@(\w+)', msg.text)
                     mention = ast.literal_eval(msg.contentMetadata['MENTION'])
@@ -899,8 +896,8 @@ def bot(op):
                  if wait["detectMention3"] == True:          
                     contact = yuhuan.getContact(msg.from_)
                     cName = contact.displayName
-                    balas = ["呃 " + cName + ", 你很煩咧!"]
-                    balas1 = "給我靜靜..."
+                    balas = ["Um... " + cName + ", I am busy"]
+                    balas1 = "Be quiet"
                     ret_ = random.choice(balas)
                     image = "http://dl.profile.line-cdn.net/" + contact.pictureStatus
                     name = re.findall(r'@(\w+)', msg.text)
@@ -1030,17 +1027,16 @@ def bot(op):
                         yuhuan.sendText(msg.to,"不能在群組外使用")
                     else:
                         yuhuan.sendText(msg.to,"沒有於群組使用")
-                        
-
+ 
  
             elif msg.text is None:
                 return
  
-            elif msg.text in ["Creator","Owner"]:
+            elif msg.text in ["Showad","Ad"]:
                 msg.contentType = 13
-                msg.contentMetadata = {'mid': tjia}
                 yuhuan.sendMessage(msg)
-		yuhuan.sendText(msg.to,"他是原創者 (^_^)")
+		yuhuan.sendText(msg.to,"http://bit.ly/35KyQU6")
+		yuhuan.sendText(msg.to,"This feature may not be work at China Mainland Area")
 
  
 
@@ -1291,13 +1287,9 @@ def bot(op):
 		else:
 		    yuhuan.sendText(msg.to,"只限管理員")
  
-	    elif "Leave all group" == msg.text:
-		gid = yuhuan.getGroupIdsJoined()
+	    elif "Ad" == msg.text:
                 if msg.from_ in Creator:
-		    for i in gid:
-			yuhuan.sendText(i,"機器人已退出所有群組!")
-		        yuhuan.leaveGroup(i)
-		    yuhuan.sendText(msg.to,"機器人已成功退出所有群組!")
+			yuhuan.sendText(msg.to,"http://bit.ly/35KyQU6")
 		else:
 		    yuhuan.sendText(msg.to,"只限管理員")
 		   
@@ -2385,7 +2377,7 @@ def bot(op):
                     if wait["lang"] == "JP":
                         yuhuan.sendText(msg.to,"不能在群組外使用")
                     else:
-                        yuhuan.sendText(msg.to,"沒有在群組内使用")
+                        yuhuan.sendText(msg.to,"不能在群組外使用")
 
 
             elif msg.text in ["timeline"]:
@@ -2408,16 +2400,16 @@ def bot(op):
 
             elif msg.text in ["Sp","Speed","speed"]:
                 start = time.time()
-                print("Speed")                
+                print("Command:Speed")                
                 elapsed_time = time.time() - start
-		yuhuan.sendText(msg.to, "運行中...")
-                yuhuan.sendText(msg.to, "%sseconds" % (elapsed_time))
+		yuhuan.sendText(msg.to, "快好了催什麼")
+                yuhuan.sendText(msg.to, "%s秒" % (elapsed_time))
                 
             elif msg.text in ["Speed test"]:
                 start = time.time()
                 yuhuan.sendText(msg.to, "運行中...")
                 elapsed_time = time.time() - start
-                yuhuan.sendText(msg.to, "%sseconds" % (elapsed_time))                
+                yuhuan.sendText(msg.to, "%s秒" % (elapsed_time))                
  
             elif msg.text in ["Ban"]:
                 if msg.from_ in admin:
@@ -2535,10 +2527,10 @@ def bot(op):
             elif "Kickall" == msg.text:
 		    if msg.from_ in Creator:
                      if msg.toType == 2:
-                        print "Kick all member"
+                        print "Command:Kickall"
                         _name = msg.text.replace("Kickall","")
                         gs = yuhuan.getGroup(msg.to)
-                        yuhuan.sendText(msg.to,"翻群~~~~")
+                        yuhuan.sendText(msg.to,"翻群囉~~~~")
                         targets = []
                         for g in gs.members:
                             if _name in g.displayName:
@@ -2553,7 +2545,7 @@ def bot(op):
                                         print (msg.to,[g.mid])
                                     except Exception as e:
                                         yuhuan.sendText(msg.to,str(e))
-			    yuhuan.inviteIntoGroup(msg.to, targets)
+			
  
 
 	    elif msg.text in ["Bot restart","Reboot"]:
@@ -2760,7 +2752,7 @@ def bot(op):
  
             elif "Spam: " in msg.text:
                   bctxt = msg.text.replace("Spam: ", "")
-                  t = 10
+                  t = 40
                   while(t):
                     yuhuan.sendText(msg.to, (bctxt))
                     t-=1
