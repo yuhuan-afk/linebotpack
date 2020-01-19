@@ -500,11 +500,11 @@ class LINE:
       callback = def_callback
 
       prof = self.getProfile()
-
-      print("===============[Yuhuan_Bot]================")
-      print("        Thanks for TCR and Vipro")
-      print("===============[© By_Yuhuan]================")
-      print("mid -> " + prof.mid)
-      print("name -> " + prof.displayName)
-      print("authToken -> " + self.authToken)
+      
+      print("")
+      
+      print("***Line-Bot***")
+      print("")
+      print("User Name -> @" + prof.displayName)
+      print("Bot Maker -> Yuhuan Kuo from Taiwan")
       print("cert -> " + self.cert if self.cert is not None else "")
