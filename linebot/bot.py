@@ -14,7 +14,7 @@ import time,random,sys,json,codecs,threading,glob,urllib,urllib2,urllib3,re,ast,
 
 yuhuan = LINETCR.LINE()
 #yuhuan.login(qr=True)
-yuhuan.login(token='enter token')
+yuhuan.login(token='EN64w8okhy4tg0hCeaF4.AcRCB98T0a5wZJvBffgtDa.boISES+Xz5AkIo9zsIwc2Cvv2DuaWB/KHIYWBrkoZU4=')
 yuhuan.loginResult()
 
 print "  Linebot Start Successful!"
@@ -141,7 +141,7 @@ groupMessage ="""
 ║       ღ 半垢 ღ
 ╚═══════════════
 """
-vip="enter id"
+vip="u682adc6fdf2dd00e56ce355b14519374"
 
 setMessage ="""
 ╔═══════════════
@@ -242,8 +242,8 @@ helpMessage ="""
 KAC=[yuhuan]
 mid = yuhuan.getProfile().mid
 Bots=[mid]
-Creator=["enter id"]
-admin=["enter id"]
+Creator=["u682adc6fdf2dd00e56ce355b14519374"]
+admin=["u682adc6fdf2dd00e56ce355b14519374"]
 
 contact = yuhuan.getProfile()
 backup1 = yuhuan.getProfile()
