@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 # Yuhuan Line Bot
-# Original file by Ningxue
 # Only for Non-commercal use
 
 import LINETCR
@@ -12,9 +11,11 @@ from googletrans import Translator
 from gtts import gTTS
 import time,random,sys,json,codecs,threading,glob,urllib,urllib2,urllib3,re,ast,os,subprocess,requests,tempfile
 
+#==============================================================================#
+
 yuhuan = LINETCR.LINE()
 #yuhuan.login(qr=True)
-yuhuan.login(token='enter your token')
+yuhuan.login(token='EMQxNXtALpZ3htuxbse5.LDx318968ibUQCMuoJV7Tq.dDb/AAsxGi/yLHO3FtKyZF6Ejrw8TyVN5PbpGF2OeNI=')
 yuhuan.loginResult()
 
 print "  Linebot Start Successful!"
@@ -34,7 +35,7 @@ print "Terminal Traceback Below:"
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-
+#==============================================================================#
 
 selfMessage ="""
 ╔═══════════════
@@ -141,7 +142,7 @@ groupMessage ="""
 ║       ღ 半垢 ღ
 ╚═══════════════
 """
-vip="enter your id"
+vip="u95d5f7d7cf7af0806ea9c9943a3bfbb5"
 
 setMessage ="""
 ╔═══════════════
@@ -238,12 +239,13 @@ helpMessage ="""
 ╚═══════════════
 """
 
+#==============================================================================#
 
 KAC=[yuhuan]
 mid = yuhuan.getProfile().mid
 Bots=[mid]
-Creator=["enter your id"]
-admin=["enter your id"]
+Creator=["u95d5f7d7cf7af0806ea9c9943a3bfbb5"]
+admin=["u95d5f7d7cf7af0806ea9c9943a3bfbb5"]
 
 contact = yuhuan.getProfile()
 backup1 = yuhuan.getProfile()
@@ -3560,3 +3562,4 @@ while True:
             yuhuan.Poll.rev = max(yuhuan.Poll.rev, Op.revision)
             bot(Op)
 
+#End
