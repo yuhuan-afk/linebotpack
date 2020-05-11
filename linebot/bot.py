@@ -14,9 +14,9 @@ import time,random,sys,json,codecs,threading,glob,urllib,urllib2,urllib3,re,ast,
 #==============================================================================#
 
 yuhuan = LINETCR.LINE()
-#yuhuan.login(qr=True)
-yuhuan.login(token='EMQxNXtALpZ3htuxbse5.LDx318968ibUQCMuoJV7Tq.dDb/AAsxGi/yLHO3FtKyZF6Ejrw8TyVN5PbpGF2OeNI=')
-yuhuan.loginResult()
+#kuohuanhuan.login(qr=True)
+kuohuanhuan.login(token='EMQxNXtALpZ3htuxbse5.LDx318968ibUQCMuoJV7Tq.dDb/AAsxGi/yLHO3FtKyZF6Ejrw8TyVN5PbpGF2OeNI=')
+kuohuanhuan.loginResult()
 
 print "  Linebot Start Successful!"
 print "==============================="
@@ -242,18 +242,18 @@ helpMessage ="""
 #==============================================================================#
 
 KAC=[yuhuan]
-mid = yuhuan.getProfile().mid
+mid = kuohuanhuan.getProfile().mid
 Bots=[mid]
 Creator=["u95d5f7d7cf7af0806ea9c9943a3bfbb5"]
 admin=["u95d5f7d7cf7af0806ea9c9943a3bfbb5"]
 
-contact = yuhuan.getProfile()
-backup1 = yuhuan.getProfile()
+contact = kuohuanhuan.getProfile()
+backup1 = kuohuanhuan.getProfile()
 backup1.displayName = contact.displayName
 backup1.statusMessage = contact.statusMessage                        
 backup1.pictureStatus = contact.pictureStatus
 
-responsename = yuhuan.getProfile().displayName
+responsename = kuohuanhuan.getProfile().displayName
 
 
 wait = {
@@ -519,7 +519,7 @@ def summon(to, nama):
     msg.contentMetadata ={'MENTION':'{"MENTIONEES":['+aa+']}','EMTVER':'4'}
     print "[Command] Tag All"
     try:
-       yuhuan.sendMessage(msg)
+       kuohuanhuan.sendMessage(msg)
     except Exception as error:
        print error          
                         
@@ -538,11 +538,11 @@ def bot(op):
 
         if op.type == 5:
            if wait["autoAdd"] == True:
-              yuhuan.findAndAddContactsByMid(op.param1)
+              kuohuanhuan.findAndAddContactsByMid(op.param1)
               if(wait["message"]in[""," ","\n",None]):
                 pass
               else:
-                yuhuan.sendText(op.param1,str(wait["message"]))
+                kuohuanhuan.sendText(op.param1,str(wait["message"]))
 
 
         if op.type == 55:
@@ -572,7 +572,7 @@ def bot(op):
                 try:
                     if cctv['cyduk'][op.param1]==True:
                         if op.param1 in cctv['point']:
-                            Name = yuhuan.getContact(op.param2).displayName
+                            Name = kuohuanhuan.getContact(op.param2).displayName
 #                            Name = summon(op.param2)
                             if Name in cctv['sidermem'][op.param1]:
                                 pass
@@ -581,15 +581,15 @@ def bot(op):
                                 if " " in Name:
                                     nick = Name.split(' ')
                                     if len(nick) == 2:
-                                        yuhuan.sendText(op.param1, "嘿 " + "☞ " + Name + " ☜" + "\n偷看了聊天對話 ")
+                                        kuohuanhuan.sendText(op.param1, "嘿 " + "☞ " + Name + " ☜" + "\n偷看了聊天對話 ")
                                         time.sleep(0.2)
                                         summon(op.param1,[op.param2])
                                     else:
-                                        yuhuan.sendText(op.param1, "嘿 " + "☞ " + Name + " ☜" + "\n是個已讀的路人 ")
+                                        kuohuanhuan.sendText(op.param1, "嘿 " + "☞ " + Name + " ☜" + "\n是個已讀的路人 ")
                                         time.sleep(0.2)
                                         summon(op.param1,[op.param2])
                                 else:
-                                    yuhuan.sendText(op.param1, "嘿 " + "☞ " + Name + " ☜" + "\n你以爲我不知道你已讀喔??? ")
+                                    kuohuanhuan.sendText(op.param1, "嘿 " + "☞ " + Name + " ☜" + "\n你以爲我不知道你已讀喔??? ")
                                     time.sleep(0.2)
                                     summon(op.param1,[op.param2])
                         else:
@@ -604,49 +604,49 @@ def bot(op):
 	      
 
         if op.type == 22:
-            yuhuan.leaveRoom(op.param1)
+            kuohuanhuan.leaveRoom(op.param1)
 
         if op.type == 21:
-            yuhuan.leaveRoom(op.param1)
+            kuohuanhuan.leaveRoom(op.param1)
 
 
         if op.type == 13:
 	    print op.param3
             if op.param3 in mid:
 		if op.param2 in Creator:
-		    yuhuan.acceptGroupInvitation(op.param1)
+		    kuohuanhuan.acceptGroupInvitation(op.param1)
 
 		    
 	    if mid in op.param3:	        
                 if wait["AutoJoinCancel"] == True:
-		    G = yuhuan.getGroup(op.param1)
+		    G = kuohuanhuan.getGroup(op.param1)
                     if len(G.members) <= wait["memberscancel"]:
-                        yuhuan.acceptGroupInvitation(op.param1)
-                        yuhuan.sendText(op.param1,"遺憾 " + yuhuan.getContact(op.param2).displayName + "\n少於30名成員... ")
-                        yuhuan.leaveGroup(op.param1)                        
+                        kuohuanhuan.acceptGroupInvitation(op.param1)
+                        kuohuanhuan.sendText(op.param1,"遺憾 " + kuohuanhuan.getContact(op.param2).displayName + "\n少於30名成員... ")
+                        kuohuanhuan.leaveGroup(op.param1)                        
 		    else:
-                        yuhuan.acceptGroupInvitation(op.param1)
-			yuhuan.sendText(op.param1,"☆輸入 ☞Help☜ 查看指令 ^_^ ☆")
+                        kuohuanhuan.acceptGroupInvitation(op.param1)
+			kuohuanhuan.sendText(op.param1,"☆輸入 ☞Help☜ 查看指令 ^_^ ☆")
                         		    
  
 	    if mid in op.param3:
                 if wait["AutoJoin"] == True:
-		    G = yuhuan.getGroup(op.param1)
+		    G = kuohuanhuan.getGroup(op.param1)
                     if len(G.members) <= wait["Members"]:
-                        yuhuan.rejectGroupInvitation(op.param1)
+                        kuohuanhuan.rejectGroupInvitation(op.param1)
 		    else:
-                        yuhuan.acceptGroupInvitation(op.param1)
-			yuhuan.sendText(op.param1,"☆輸入 ☞Help☜ 查看指令 ^_^ ☆")
+                        kuohuanhuan.acceptGroupInvitation(op.param1)
+			kuohuanhuan.sendText(op.param1,"☆輸入 ☞Help☜ 查看指令 ^_^ ☆")
 	    else:
                 if wait["AutoCancel"] == True:
 		    if op.param3 in Bots:
 			pass
 		    else:
-                        yuhuan.cancelGroupInvitation(op.param1, [op.param3])
+                        kuohuanhuan.cancelGroupInvitation(op.param1, [op.param3])
 		else:
 		    if op.param3 in wait["blacklist"]:
-			yuhuan.cancelGroupInvitation(op.param1, [op.param3])
-			yuhuan.sendText(op.param1, "黑名單被偵測")
+			kuohuanhuan.cancelGroupInvitation(op.param1, [op.param3])
+			kuohuanhuan.sendText(op.param1, "黑名單被偵測")
 		    else:
 			pass
 			
@@ -660,8 +660,8 @@ def bot(op):
                     pass
                 elif wait["inviteprotect"] == True:
                     wait ["blacklist"][op.param2] = True
-                    yuhuan.cancelGroupInvitation(op.param1,[op.param3])
-                    yuhuan.kickoutFromGroup(op.param1,[op.param2])
+                    kuohuanhuan.cancelGroupInvitation(op.param1,[op.param3])
+                    kuohuanhuan.kickoutFromGroup(op.param1,[op.param2])
                     if op.param2 not in Creator:
                      if op.param2 not in admin:
                       if op.param2 not in Bots:
@@ -682,21 +682,21 @@ def bot(op):
 		           if op.param2 in Bots:
 		               pass
 		           else:
-		               yuhuan.kickoutFromGroup(op.param1,[op.param2])
+		               kuohuanhuan.kickoutFromGroup(op.param1,[op.param2])
 		               if op.param2 in wait["blacklist"]:
 		                   pass
 		        else:
-			    yuhuan.inviteIntoGroup(op.param1,[op.param3])
+			    kuohuanhuan.inviteIntoGroup(op.param1,[op.param3])
 		    except:
 		        try:
 			    if op.param2 not in Creator:
 			        if op.param2 not in admin:
 			            if op.param2 not in Bots:
-                                        yuhuan.kickoutFromGroup(op.param1,[op.param2])
+                                        kuohuanhuan.kickoutFromGroup(op.param1,[op.param2])
 			    if op.param2 in wait["blacklist"]:
 			        pass
 			    else:
-			        yuhuan.inviteIntoGroup(op.param1,[op.param3])
+			        kuohuanhuan.inviteIntoGroup(op.param1,[op.param3])
 		        except:
 			    print ("他不存在於組中\ngid=["+op.param1+"]\nmid=["+op.param2+"]")
                         if op.param2 in wait["blacklist"]:
@@ -726,11 +726,11 @@ def bot(op):
                       if op.param2 in Bots:
                         pass
                     try:
-                        yuhuan.kickoutFromGroup(op.param1,[op.param2])
-			yuhuan.kickoutFromGroup(op.param1,[op.param2])
+                        kuohuanhuan.kickoutFromGroup(op.param1,[op.param2])
+			kuohuanhuan.kickoutFromGroup(op.param1,[op.param2])
                     except:
                         try:
-			    yuhuan.kickoutFromGroup(op.param1,[op.param2])
+			    kuohuanhuan.kickoutFromGroup(op.param1,[op.param2])
                         except:
                             print ("他不存在於組中\ngid=["+op.param1+"]\nmid=["+op.param2+"]")
                         if op.param2 in wait["blacklist"]:
@@ -752,16 +752,16 @@ def bot(op):
                     if op.param2 in Bots:
                         pass
                     try:
-                        yuhuan.kickoutFromGroup(op.param1,[op.param2])
-			yuhuan.kickoutFromGroup(op.param1,[op.param2])
+                        kuohuanhuan.kickoutFromGroup(op.param1,[op.param2])
+			kuohuanhuan.kickoutFromGroup(op.param1,[op.param2])
                     except:
                         try:
 			    if op.param2 not in Bots:
-                                yuhuan.kickoutFromGroup(op.param1,[op.param2])
+                                kuohuanhuan.kickoutFromGroup(op.param1,[op.param2])
 			    if op.param2 in wait["blacklist"]:
 			        pass
 			    else:
-			        yuhuan.inviteIntoGroup(op.param1,[op.param3])
+			        kuohuanhuan.inviteIntoGroup(op.param1,[op.param3])
                         except:
                             print ("他不存在於組中\ngid=["+op.param1+"]\nmid=["+op.param2+"]")
                         if op.param2 in wait["blacklist"]:
@@ -770,7 +770,7 @@ def bot(op):
                             pass
                         else:
                             wait["blacklist"][op.param2] = True
-                    yuhuan.inviteIntoGroup(op.param1,[op.param3])
+                    kuohuanhuan.inviteIntoGroup(op.param1,[op.param3])
                     if op.param2 in wait["blacklist"]:
                         pass
                     if op.param2 in wait["whitelist"]:
@@ -786,7 +786,7 @@ def bot(op):
 		  if op.param2 in Bots:
 		   pass		
 		else:
-                    yuhuan.kickoutFromGroup(op.param1,[op.param2])
+                    kuohuanhuan.kickoutFromGroup(op.param1,[op.param2])
             else:
                 pass
 
@@ -795,33 +795,33 @@ def bot(op):
           if wait["Sambutan"] == True:
             if op.param2 in Creator:
                 return
-            ginfo = yuhuan.getGroup(op.param1)
-            contact = yuhuan.getContact(op.param2)
+            ginfo = kuohuanhuan.getGroup(op.param1)
+            contact = kuohuanhuan.getContact(op.param2)
             image = "http://dl.profile.line-cdn.net/" + contact.pictureStatus
-            yuhuan.sendText(op.param1,"安安 " + yuhuan.getContact(op.param2).displayName + "\n歡迎閣下加入 ☞ " + str(ginfo.name) + " ☜" + "^_^")
+            kuohuanhuan.sendText(op.param1,"安安 " + kuohuanhuan.getContact(op.param2).displayName + "\n歡迎閣下加入 ☞ " + str(ginfo.name) + " ☜" + "^_^")
             c = Message(to=op.param1, from_=None, text=None, contentType=13)
             c.contentMetadata={'mid':op.param2}
-            yuhuan.sendMessage(c)  
-            yuhuan.sendImageWithURL(op.param1,image)
+            kuohuanhuan.sendMessage(c)  
+            kuohuanhuan.sendImageWithURL(op.param1,image)
             d = Message(to=op.param1, from_=None, text=None, contentType=7)
             d.contentMetadata={
                                     "STKID": "13269548",
                                     "STKPKGID": "1329191",
                                     "STKVER": "1" }                
-            yuhuan.sendMessage(d)             
+            kuohuanhuan.sendMessage(d)             
             print "MEMBER JOIN TO GROUP"
 
         if op.type == 15:
           if wait["Sambutan"] == True:
             if op.param2 in Creator:
                 return
-            yuhuan.sendText(op.param1,yuhuan.getContact(op.param2).displayName +  "\n已退出群組")
+            kuohuanhuan.sendText(op.param1,kuohuanhuan.getContact(op.param2).displayName +  "\n已退出群組")
             d = Message(to=op.param1, from_=None, text=None, contentType=7)
             d.contentMetadata={
                                     "STKID": "13269542",
                                     "STKPKGID": "1329191",
                                     "STKVER": "1" }                
-            yuhuan.sendMessage(d)                  
+            kuohuanhuan.sendMessage(d)                  
             print "MEMBER HAS LEFT THE GROUP"
             
         if op.type == 26:
@@ -830,7 +830,7 @@ def bot(op):
             if msg.from_ in mimic["target"] and mimic["status"] == True and mimic["target"][msg.from_] == True:
                     text = msg.text
                     if text is not None:
-                        yuhuan.sendText(msg.to,text)             
+                        kuohuanhuan.sendText(msg.to,text)             
             
             
             if msg.to in settings["simiSimi"]:
@@ -842,11 +842,11 @@ def bot(op):
                         data = json.loads(data)
                         if data['status'] == 200:
                             if data['result']['result'] == 100:
-                                yuhuan.sendText(msg.to,data['result']['response'].encode('utf-8'))
+                                kuohuanhuan.sendText(msg.to,data['result']['response'].encode('utf-8'))
 
             if 'MENTION' in msg.contentMetadata.keys() != None:
                  if wait["kickMention"] == True:
-                     contact = yuhuan.getContact(msg.from_)
+                     contact = kuohuanhuan.getContact(msg.from_)
                      cName = contact.displayName
                      balas = ["呵呵... " + cName + "\n慢走不送!!!"]
                      ret_ = random.choice(balas)                     
@@ -855,13 +855,13 @@ def bot(op):
                      mentionees = mention['MENTIONEES']
                      for mention in mentionees:
                            if mention['M'] in Bots:
-                                  yuhuan.sendText(msg.to,ret_)
-                                  yuhuan.kickoutFromGroup(msg.to,[msg.from_])
+                                  kuohuanhuan.sendText(msg.to,ret_)
+                                  kuohuanhuan.kickoutFromGroup(msg.to,[msg.from_])
                                   break                              
                               
             if 'MENTION' in msg.contentMetadata.keys() != None:
                  if wait["detectMention"] == True:
-                     contact = yuhuan.getContact(msg.from_)
+                     contact = kuohuanhuan.getContact(msg.from_)
                      cName = contact.displayName
                      balas = ["不要標我!! 我很忙!!",cName + " 再標我不理你了!!"]
                      ret_ = random.choice(balas)
@@ -870,12 +870,12 @@ def bot(op):
                      mentionees = mention['MENTIONEES']
                      for mention in mentionees:
                            if mention['M'] in Bots:
-                                  yuhuan.sendText(msg.to,ret_)
+                                  kuohuanhuan.sendText(msg.to,ret_)
                                   break   
                               
             if 'MENTION' in msg.contentMetadata.keys() != None:
                  if wait["detectMention2"] == True:          
-                    contact = yuhuan.getContact(msg.from_)
+                    contact = kuohuanhuan.getContact(msg.from_)
                     cName = contact.displayName
                     balas = ["竟敢打擾老子",cName + " 有什麼事？"]
                     ret_ = random.choice(balas)
@@ -884,19 +884,19 @@ def bot(op):
                     mentionees = mention['MENTIONEES']
                     for mention in mentionees:
                            if mention['M'] in Bots:
-                                  yuhuan.sendText(msg.to,ret_)
+                                  kuohuanhuan.sendText(msg.to,ret_)
                                   msg.contentType = 7   
                                   msg.text = None
                                   msg.contentMetadata = {
                                                        "STKID": "20001316",
                                                        "STKPKGID": "1582380",
                                                        "STKVER": "1" }
-                                  yuhuan.sendMessage(msg)                                
+                                  kuohuanhuan.sendMessage(msg)                                
                                   break
                               
             if 'MENTION' in msg.contentMetadata.keys() != None:
                  if wait["detectMention3"] == True:          
-                    contact = yuhuan.getContact(msg.from_)
+                    contact = kuohuanhuan.getContact(msg.from_)
                     cName = contact.displayName
                     balas = ["Um... " + cName + ", I am busy"]
                     balas1 = "Be quiet"
@@ -907,16 +907,16 @@ def bot(op):
                     mentionees = mention['MENTIONEES']
                     for mention in mentionees:
                            if mention['M'] in Bots:
-                                  yuhuan.sendText(msg.to,ret_)
-                                  yuhuan.sendText(msg.to,balas1)
-                                  yuhuan.sendImageWithURL(msg.to,image)
+                                  kuohuanhuan.sendText(msg.to,ret_)
+                                  kuohuanhuan.sendText(msg.to,balas1)
+                                  kuohuanhuan.sendImageWithURL(msg.to,image)
                                   msg.contentType = 7   
                                   msg.text = None
                                   msg.contentMetadata = {
                                                        "STKID": "11764508",
                                                        "STKPKGID": "6641",
                                                        "STKVER": "1" }
-                                  yuhuan.sendMessage(msg)                                
+                                  kuohuanhuan.sendMessage(msg)                                
                                   break  
                                   
         if op.type == 25:
@@ -924,7 +924,7 @@ def bot(op):
                               
             if msg.text in ["Bot on"]:
                 wait["Bot"] = True
-                yuhuan.sendText(msg.to,"機器人已開啟")  
+                kuohuanhuan.sendText(msg.to,"機器人已開啟")  
 
         if op.type == 25:
           if wait["Bot"] == True:    
@@ -938,24 +938,24 @@ def bot(op):
                 stk_ver = msg.contentMetadata['STKVER']
                 pkg_id = msg.contentMetadata['STKPKGID']
                 filler = "『 Sticker Check 』\nSTKID : %s\nSTKPKGID : %s\nSTKVER : %s\n『 Link 』\nline://shop/detail/%s" % (stk_id,pkg_id,stk_ver,pkg_id)
-                yuhuan.sendText(msg.to, filler)
+                kuohuanhuan.sendText(msg.to, filler)
                 wait["sticker"] = False
             else:
                 pass              
 
             if wait["alwaysRead"] == True:
                 if msg.toType == 0:
-                    yuhuan.sendChatChecked(msg.from_,msg.id)
+                    kuohuanhuan.sendChatChecked(msg.from_,msg.id)
                 else:
-                    yuhuan.sendChatChecked(msg.to,msg.id)
+                    kuohuanhuan.sendChatChecked(msg.to,msg.id)
                     
                     
             if msg.contentType == 16:
                 if wait['likeOn'] == True:
                      url = msg.contentMetadata["postEndUrl"]
-                     yuhuan.like(url[25:58], url[66:], likeType=1005)
-                     yuhuan.comment(url[25:58], url[66:], wait["comment"])
-                     yuhuan.sendText(msg.to,"Like Success")                     
+                     kuohuanhuan.like(url[25:58], url[66:], likeType=1005)
+                     kuohuanhuan.comment(url[25:58], url[66:], wait["comment"])
+                     kuohuanhuan.sendText(msg.to,"Like Success")                     
                      wait['likeOn'] = False
 
 
@@ -963,51 +963,51 @@ def bot(op):
                 if wait["wblacklist"] == True:
 		    if msg.contentMetadata["mid"] not in admin:
                         if msg.contentMetadata["mid"] in wait["blacklist"]:
-                            yuhuan.sendText(msg.to,"完成")
+                            kuohuanhuan.sendText(msg.to,"完成")
                             wait["wblacklist"] = False
                         else:
                             wait["blacklist"][msg.contentMetadata["mid"]] = True
                             wait["wblacklist"] = False
-                            yuhuan.sendText(msg.to,"失敗")
+                            kuohuanhuan.sendText(msg.to,"失敗")
 		    else:
-			yuhuan.sendText(msg.to,"Admin Detected~")
+			kuohuanhuan.sendText(msg.to,"Admin Detected~")
 			
 
                 elif wait["dblacklist"] == True:
                     if msg.contentMetadata["mid"] in wait["blacklist"]:
                         del wait["blacklist"][msg.contentMetadata["mid"]]
-                        yuhuan.sendText(msg.to,"黑名單已清空")
+                        kuohuanhuan.sendText(msg.to,"黑名單已清空")
                         wait["dblacklist"] = False
 
                     else:
                         wait["dblacklist"] = False
-                        yuhuan.sendText(msg.to,"沒有黑名單")
+                        kuohuanhuan.sendText(msg.to,"沒有黑名單")
             
                     
  
                 elif wait["Contact"] == True:
                      msg.contentType = 0
-                     yuhuan.sendText(msg.to,msg.contentMetadata["mid"])
+                     kuohuanhuan.sendText(msg.to,msg.contentMetadata["mid"])
                      if 'displayName' in msg.contentMetadata:
-                         contact = yuhuan.getContact(msg.contentMetadata["mid"])
+                         contact = kuohuanhuan.getContact(msg.contentMetadata["mid"])
                          try:
-                             cu = yuhuan.channel.getCover(msg.contentMetadata["mid"])
+                             cu = kuohuanhuan.channel.getCover(msg.contentMetadata["mid"])
                          except:
                              cu = ""
-                         yuhuan.sendText(msg.to,"Nama:\n" + msg.contentMetadata["displayName"] + "\n\nMid:\n" + msg.contentMetadata["mid"] + "\n\nStatus:\n" + contact.statusMessage + "\n\nPhoto Profile:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n\nPhoto Cover:\n" + str(cu))
+                         kuohuanhuan.sendText(msg.to,"Nama:\n" + msg.contentMetadata["displayName"] + "\n\nMid:\n" + msg.contentMetadata["mid"] + "\n\nStatus:\n" + contact.statusMessage + "\n\nPhoto Profile:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n\nPhoto Cover:\n" + str(cu))
                      else:
-                         contact = yuhuan.getContact(msg.contentMetadata["mid"])
+                         contact = kuohuanhuan.getContact(msg.contentMetadata["mid"])
                          try:
-                             cu = yuhuan.channel.getCover(msg.contentMetadata["mid"])
+                             cu = kuohuanhuan.channel.getCover(msg.contentMetadata["mid"])
                          except:
                              cu = ""
-                         yuhuan.sendText(msg.to,"Nama:\n" + msg.contentMetadata["displayName"] + "\n\nMid:\n" + msg.contentMetadata["mid"] + "\n\nStatus:\n" + contact.statusMessage + "\n\nPhoto Profile:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n\nPhoto Cover:\n" + str(cu))
+                         kuohuanhuan.sendText(msg.to,"Nama:\n" + msg.contentMetadata["displayName"] + "\n\nMid:\n" + msg.contentMetadata["mid"] + "\n\nStatus:\n" + contact.statusMessage + "\n\nPhoto Profile:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n\nPhoto Cover:\n" + str(cu))
 
 
  
             elif msg.text == "Ginfo":
                 if msg.toType == 2:
-                    ginfo = yuhuan.getGroup(msg.to)
+                    ginfo = kuohuanhuan.getGroup(msg.to)
                     try:
                         gCreator = ginfo.creator.displayName
                     except:
@@ -1021,14 +1021,14 @@ def bot(op):
                             u = "close"
                         else:
                             u = "open"
-                        yuhuan.sendText(msg.to,"[Group name]\n" + str(ginfo.name) + "\n\n[Gid]\n" + msg.to + "\n\n[Group creator]\n" + gCreator + "\n\n[Profile status]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n\nMembers:" + str(len(ginfo.members)) + "members\nPending:" + sinvitee + "people\nURL:" + u + "it is inside")
+                        kuohuanhuan.sendText(msg.to,"[Group name]\n" + str(ginfo.name) + "\n\n[Gid]\n" + msg.to + "\n\n[Group creator]\n" + gCreator + "\n\n[Profile status]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus + "\n\nMembers:" + str(len(ginfo.members)) + "members\nPending:" + sinvitee + "people\nURL:" + u + "it is inside")
                     else:
-                        yuhuan.sendText(msg.to,"[group name]\n" + str(ginfo.name) + "\n[gid]\n" + msg.to + "\n[group creator]\n" + gCreator + "\n[profile status]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus)
+                        kuohuanhuan.sendText(msg.to,"[group name]\n" + str(ginfo.name) + "\n[gid]\n" + msg.to + "\n[group creator]\n" + gCreator + "\n[profile status]\nhttp://dl.profile.line.naver.jp/" + ginfo.pictureStatus)
                 else:
                     if wait["lang"] == "JP":
-                        yuhuan.sendText(msg.to,"不能在群組外使用")
+                        kuohuanhuan.sendText(msg.to,"不能在群組外使用")
                     else:
-                        yuhuan.sendText(msg.to,"沒有於群組使用")
+                        kuohuanhuan.sendText(msg.to,"沒有於群組使用")
  
  
             elif msg.text is None:
@@ -1036,19 +1036,19 @@ def bot(op):
  
             elif msg.text in ["Showad","Ad"]:
                 msg.contentType = 13
-                yuhuan.sendMessage(msg)
-		yuhuan.sendText(msg.to,"http://bit.ly/35KyQU6")
-		yuhuan.sendText(msg.to,"This feature may not be work at China Mainland Area")
+                kuohuanhuan.sendMessage(msg)
+		kuohuanhuan.sendText(msg.to,"http://bit.ly/35KyQU6")
+		kuohuanhuan.sendText(msg.to,"This feature may not be work at China Mainland Area")
 
  
 
 	    elif msg.text in ["Group creator","Gcreator","gcreator"]:
-		ginfo = yuhuan.getGroup(msg.to)
+		ginfo = kuohuanhuan.getGroup(msg.to)
 		gCreator = ginfo.creator.mid
                 msg.contentType = 13
                 msg.contentMetadata = {'mid': gCreator}
-                yuhuan.sendMessage(msg)
-		yuhuan.sendText(msg.to,"他是群主")
+                kuohuanhuan.sendMessage(msg)
+		kuohuanhuan.sendText(msg.to,"他是群主")
  
 
                 
@@ -1056,14 +1056,14 @@ def bot(op):
                 if wait["Timeline"] == True:
                     msg.contentType = 0
                     msg.text = "post URL\n" + msg.contentMetadata["postEndUrl"]
-                    yuhuan.sendText(msg.to,msg.text)
+                    kuohuanhuan.sendText(msg.to,msg.text)
 
             
             if msg.contentType == 13:
                 if wait["steal"] == True:
                     _name = msg.contentMetadata["displayName"]
                     copy = msg.contentMetadata["mid"]
-                    groups = yuhuan.getGroup(msg.to)
+                    groups = kuohuanhuan.getGroup(msg.to)
                     pending = groups.invitee
                     targets = []
                     for s in groups.members:
@@ -1077,16 +1077,16 @@ def bot(op):
                     else:
                         for target in targets:
                             try:
-                                yuhuan.findAndAddContactsByMid(target)
-                                contact = yuhuan.getContact(target)
-                                cu = yuhuan.channel.getCover(target)
+                                kuohuanhuan.findAndAddContactsByMid(target)
+                                contact = kuohuanhuan.getContact(target)
+                                cu = kuohuanhuan.channel.getCover(target)
                                 path = str(cu)
                                 image = "http://dl.profile.line-cdn.net/" + contact.pictureStatus
-                                yuhuan.sendText(msg.to,"Nama :\n" + contact.displayName + "\n\nMid :\n" + msg.contentMetadata["mid"] + "\n\nBio :\n" + contact.statusMessage)
-                                yuhuan.sendText(msg.to,"Profile Picture " + contact.displayName)
-                                yuhuan.sendImageWithURL(msg.to,image)
-                                yuhuan.sendText(msg.to,"Cover " + contact.displayName)
-                                yuhuan.sendImageWithURL(msg.to,path)
+                                kuohuanhuan.sendText(msg.to,"Nama :\n" + contact.displayName + "\n\nMid :\n" + msg.contentMetadata["mid"] + "\n\nBio :\n" + contact.statusMessage)
+                                kuohuanhuan.sendText(msg.to,"Profile Picture " + contact.displayName)
+                                kuohuanhuan.sendImageWithURL(msg.to,image)
+                                kuohuanhuan.sendText(msg.to,"Cover " + contact.displayName)
+                                kuohuanhuan.sendImageWithURL(msg.to,path)
                                 wait["steal"] = False
                                 break
                             except:
@@ -1097,7 +1097,7 @@ def bot(op):
                 if wait["gift"] == True:
                     _name = msg.contentMetadata["displayName"]
                     copy = msg.contentMetadata["mid"]
-                    groups = yuhuan.getGroup(msg.to)
+                    groups = kuohuanhuan.getGroup(msg.to)
                     pending = groups.invitee
                     targets = []
                     for s in groups.members:
@@ -1111,7 +1111,7 @@ def bot(op):
                     else:
                         for target in targets:
                             try:
-                                yuhuan.sendText(msg.to,"送你禮物!")
+                                kuohuanhuan.sendText(msg.to,"送你禮物!")
                                 msg.contentType = 9
                                 msg.contentMetadata= {'PRDTYPE': 'STICKER',
                                                          'STKVER': '1',
@@ -1119,7 +1119,7 @@ def bot(op):
                                                          'STKPKGID': '1296261'}
                                 msg.to = target
                                 msg.text = None
-                                yuhuan.sendMessage(msg)
+                                kuohuanhuan.sendMessage(msg)
                                 wait['gift'] = False
                                 break
                             except:
@@ -1131,7 +1131,7 @@ def bot(op):
                 if wait["copy"] == True:
                     _name = msg.contentMetadata["displayName"]
                     copy = msg.contentMetadata["mid"]
-                    groups = yuhuan.getGroup(msg.to)
+                    groups = kuohuanhuan.getGroup(msg.to)
                     targets = []
                     for s in groups.members:
                         if _name in s.displayName:
@@ -1140,13 +1140,13 @@ def bot(op):
                         else:
                             targets.append(copy)
                     if targets == []:
-                        yuhuan.sendText(msg.to, "Not Found...")
+                        kuohuanhuan.sendText(msg.to, "Not Found...")
                         pass
                     else:
                         for target in targets:
                             try:
-                                yuhuan.CloneContactProfile(target)
-                                yuhuan.sendText(msg.to, "Copied (^_^)")
+                                kuohuanhuan.CloneContactProfile(target)
+                                kuohuanhuan.sendText(msg.to, "Copied (^_^)")
                                 wait['copy'] = False
                                 break
                             except:
@@ -1159,12 +1159,12 @@ def bot(op):
                 if wait['invite'] == True:
                      _name = msg.contentMetadata["displayName"]
                      invite = msg.contentMetadata["mid"]
-                     groups = yuhuan.getGroup(msg.to)
+                     groups = kuohuanhuan.getGroup(msg.to)
                      pending = groups.invitee
                      targets = []
                      for s in groups.members:
                          if _name in s.displayName:
-                             yuhuan.sendText(msg.to, _name + " 這搞砸了")
+                             kuohuanhuan.sendText(msg.to, _name + " 這搞砸了")
                          else:
                              targets.append(invite)
                      if targets == []:
@@ -1172,200 +1172,200 @@ def bot(op):
                      else:
                          for target in targets:
                              try:
-                                 yuhuan.findAndAddContactsByMid(target)
-                                 yuhuan.inviteIntoGroup(msg.to,[target])
-                                 yuhuan.sendText(msg.to,"Invite " + _name)
+                                 kuohuanhuan.findAndAddContactsByMid(target)
+                                 kuohuanhuan.inviteIntoGroup(msg.to,[target])
+                                 kuohuanhuan.sendText(msg.to,"Invite " + _name)
                                  wait['invite'] = False
                                  break                              
                              except:             
-                                      yuhuan.sendText(msg.to,"Limit Invite")
+                                      kuohuanhuan.sendText(msg.to,"Limit Invite")
                                       wait['invite'] = False
                                       break
                                   
  
             elif msg.text in ["Key creator","help creator","Help creator"]:
-                yuhuan.sendText(msg.to,creatorMessage)
+                kuohuanhuan.sendText(msg.to,creatorMessage)
 
             elif msg.text in ["Key group","help group","Help group"]:
-                yuhuan.sendText(msg.to,groupMessage)
+                kuohuanhuan.sendText(msg.to,groupMessage)
 
             elif msg.text in ["Key","help","Help"]:
-                yuhuan.sendText(msg.to,helpMessage)
+                kuohuanhuan.sendText(msg.to,helpMessage)
 
             elif msg.text in ["Key self","help self","Help self"]:
-                yuhuan.sendText(msg.to,selfMessage)
+                kuohuanhuan.sendText(msg.to,selfMessage)
 
             elif msg.text in ["Key bot","help bot","Help bot"]:
-                yuhuan.sendText(msg.to,botMessage)
+                kuohuanhuan.sendText(msg.to,botMessage)
 
             elif msg.text in ["Key set","help set","Help set"]:
-                yuhuan.sendText(msg.to,setMessage)
+                kuohuanhuan.sendText(msg.to,setMessage)
 
             elif msg.text in ["Key media","help media","Help media"]:
-                yuhuan.sendText(msg.to,mediaMessage)
+                kuohuanhuan.sendText(msg.to,mediaMessage)
                 
             elif msg.text in ["Key admin","help admin","Help admin"]:
-                yuhuan.sendText(msg.to,adminMessage)               
+                kuohuanhuan.sendText(msg.to,adminMessage)               
                 
 
  
             elif msg.text in ["List group"]:
-                    gid = yuhuan.getGroupIdsJoined()
+                    gid = kuohuanhuan.getGroupIdsJoined()
                     h = ""
 		    jml = 0
                     for i in gid:
-		        gn = yuhuan.getGroup(i).name
+		        gn = kuohuanhuan.getGroup(i).name
                         h += "♦【%s】\n" % (gn)
 		        jml += 1
-                    yuhuan.sendText(msg.to,"=======[List Group]=======\n"+ h +"\nTotal Group: "+str(jml))
+                    kuohuanhuan.sendText(msg.to,"=======[List Group]=======\n"+ h +"\nTotal Group: "+str(jml))
  
 	    elif "Ban group: " in msg.text:
 		grp = msg.text.replace("Ban group: ","")
-		gid = yuhuan.getGroupIdsJoined()
+		gid = kuohuanhuan.getGroupIdsJoined()
 		if msg.from_ in admin:
 		    for i in gid:
-		        h = yuhuan.getGroup(i).name
+		        h = kuohuanhuan.getGroup(i).name
 			if h == grp:
 			    wait["BlGroup"][i]=True
-			    yuhuan.sendText(msg.to, "成功禁止群組 : "+grp)
+			    kuohuanhuan.sendText(msg.to, "成功禁止群組 : "+grp)
 			else:
 			    pass
 		else:
-		    yuhuan.sendText(msg.to, "只限管理員")
+		    kuohuanhuan.sendText(msg.to, "只限管理員")
  
             elif msg.text in ["List ban","List ban group"]:
 		if msg.from_ in admin:
                     if wait["BlGroup"] == {}:
-                        yuhuan.sendText(msg.to,"ñ")
+                        kuohuanhuan.sendText(msg.to,"ñ")
                     else:
                         mc = ""
                         for gid in wait["BlGroup"]:
-                            mc += "-> " +yuhuan.getGroup(gid).name + "\n"
-                        yuhuan.sendText(msg.to,"===[Ban Group]===\n"+mc)
+                            mc += "-> " +kuohuanhuan.getGroup(gid).name + "\n"
+                        kuohuanhuan.sendText(msg.to,"===[Ban Group]===\n"+mc)
 		else:
-		    yuhuan.sendText(msg.to, "只限管理員")
+		    kuohuanhuan.sendText(msg.to, "只限管理員")
  
 	    elif msg.text in ["Del ban: "]:
 		if msg.from_ in admin:
 		    ng = msg.text.replace("Del ban: ","")
 		    for gid in wait["BlGroup"]:
-		        if yuhuan.getGroup(gid).name == ng:
+		        if kuohuanhuan.getGroup(gid).name == ng:
 			    del wait["BlGroup"][gid]
-			    yuhuan.sendText(msg.to, "Success del ban "+ng)
+			    kuohuanhuan.sendText(msg.to, "Success del ban "+ng)
 		        else:
 			    pass
 		else:
-		    yuhuan.sendText(msg.to, "只限管理員")
+		    kuohuanhuan.sendText(msg.to, "只限管理員")
  
             elif "Join group: " in msg.text:
 		ng = msg.text.replace("Join group: ","")
-		gid = yuhuan.getGroupIdsJoined()
+		gid = kuohuanhuan.getGroupIdsJoined()
 		try:
 		    if msg.from_ in Creator:
                         for i in gid:
-                            h = yuhuan.getGroup(i).name
+                            h = kuohuanhuan.getGroup(i).name
 		            if h == ng:
-		                yuhuan.inviteIntoGroup(i,[Creator])
-			        yuhuan.sendText(msg.to,"Success Join To ["+ h +"] Group")
+		                kuohuanhuan.inviteIntoGroup(i,[Creator])
+			        kuohuanhuan.sendText(msg.to,"Success Join To ["+ h +"] Group")
 			    else:
 			        pass
 		    else:
-		        yuhuan.sendText(msg.to,"只限管理員")
+		        kuohuanhuan.sendText(msg.to,"只限管理員")
 		except Exception as e:
-		    yuhuan.sendText(msg.to, str(e))
+		    kuohuanhuan.sendText(msg.to, str(e))
  
 	    elif "Leave group: " in msg.text:
 		ng = msg.text.replace("Leave group: ","")
-		gid = yuhuan.getGroupIdsJoined()
+		gid = kuohuanhuan.getGroupIdsJoined()
 		if msg.from_ in Creator:
                     for i in gid:
-                        h = yuhuan.getGroup(i).name
+                        h = kuohuanhuan.getGroup(i).name
 		        if h == ng:
-			    yuhuan.sendText(i,"機器人已退出群組!")
-		            yuhuan.leaveGroup(i)
-			    yuhuan.sendText(msg.to,"Success Left ["+ h +"] group")
+			    kuohuanhuan.sendText(i,"機器人已退出群組!")
+		            kuohuanhuan.leaveGroup(i)
+			    kuohuanhuan.sendText(msg.to,"Success Left ["+ h +"] group")
 			else:
 			    pass
 		else:
-		    yuhuan.sendText(msg.to,"只限管理員")
+		    kuohuanhuan.sendText(msg.to,"只限管理員")
  
 	    elif "Ad" == msg.text:
                 if msg.from_ in Creator:
-			yuhuan.sendText(msg.to,"http://bit.ly/35KyQU6")
+			kuohuanhuan.sendText(msg.to,"http://bit.ly/35KyQU6")
 		else:
-		    yuhuan.sendText(msg.to,"只限管理員")
+		    kuohuanhuan.sendText(msg.to,"只限管理員")
 		   
 
             elif "Pict group: " in msg.text:
                 saya = msg.text.replace('Pict group: ','')
-                gid = yuhuan.getGroupIdsJoined()
+                gid = kuohuanhuan.getGroupIdsJoined()
                 for i in gid:
-                    h = yuhuan.getGroup(i).name
-                    gna = yuhuan.getGroup(i)
+                    h = kuohuanhuan.getGroup(i).name
+                    gna = kuohuanhuan.getGroup(i)
                     if h == saya:
-                        yuhuan.sendImageWithURL(msg.to,"http://dl.profile.line.naver.jp/"+ gna.pictureStatus)		    
+                        kuohuanhuan.sendImageWithURL(msg.to,"http://dl.profile.line.naver.jp/"+ gna.pictureStatus)		    
 		    
  
             elif msg.text in ["cancelall","Cancelall"]:
                 if msg.toType == 2:
-                    X = yuhuan.getGroup(msg.to)
+                    X = kuohuanhuan.getGroup(msg.to)
                     if X.invitee is not None:
                         gInviMids = [contact.mid for contact in X.invitee]
-                        yuhuan.cancelGroupInvitation(msg.to, gInviMids)
+                        kuohuanhuan.cancelGroupInvitation(msg.to, gInviMids)
                     else:
-                        yuhuan.sendText(msg.to,"沒有待定")
+                        kuohuanhuan.sendText(msg.to,"沒有待定")
                 else:
-                    yuhuan.sendText(msg.to,"不能在群組外使用")
+                    kuohuanhuan.sendText(msg.to,"不能在群組外使用")
  
             elif msg.text in ["Ourl","Url on"]:
                 if msg.toType == 2:
-                    X = yuhuan.getGroup(msg.to)
+                    X = kuohuanhuan.getGroup(msg.to)
                     X.preventJoinByTicket = False
-                    yuhuan.updateGroup(X)
-                    yuhuan.sendText(msg.to,"網址已開啟")
+                    kuohuanhuan.updateGroup(X)
+                    kuohuanhuan.sendText(msg.to,"網址已開啟")
                 else:
-                    yuhuan.sendText(msg.to,"不能在群組外使用")
+                    kuohuanhuan.sendText(msg.to,"不能在群組外使用")
  
             elif msg.text in ["Curl","Url off"]:
                 if msg.toType == 2:
-                    X = yuhuan.getGroup(msg.to)
+                    X = kuohuanhuan.getGroup(msg.to)
                     X.preventJoinByTicket = True
-                    yuhuan.updateGroup(X)
-                    yuhuan.sendText(msg.to,"網址已關閉")
+                    kuohuanhuan.updateGroup(X)
+                    kuohuanhuan.sendText(msg.to,"網址已關閉")
 
                 else:
-                    yuhuan.sendText(msg.to,"不能在群組外使用")
+                    kuohuanhuan.sendText(msg.to,"不能在群組外使用")
  
             elif msg.text in ["Join on","Autojoin on"]:
 		if msg.from_ in admin:
                     wait["AutoJoin"] = True
                     wait["AutoJoinCancel"] = False
-                    yuhuan.sendText(msg.to,"自動加入群組開啟")
+                    kuohuanhuan.sendText(msg.to,"自動加入群組開啟")
 		else:
-		    yuhuan.sendText(msg.to,"只限管理員")
+		    kuohuanhuan.sendText(msg.to,"只限管理員")
 
             elif msg.text in ["Join off","Autojoin off"]:
 		if msg.from_ in admin:
                     wait["AutoJoin"] = False
-                    yuhuan.sendText(msg.to,"自動加入群組關閉")
+                    kuohuanhuan.sendText(msg.to,"自動加入群組關閉")
 		else:
-		    yuhuan.sendText(msg.to,"只限管理員")
+		    kuohuanhuan.sendText(msg.to,"只限管理員")
 		    
 		    
             elif msg.text in ["Joincancel on","Autojoincancel on"]:
 		if msg.from_ in admin:
                     wait["AutoJoinCancel"] = True
                     wait["AutoJoin"] = False
-                    yuhuan.sendText(msg.to,"自動取消群組邀請開啟")
+                    kuohuanhuan.sendText(msg.to,"自動取消群組邀請開啟")
 		else:
-		    yuhuan.sendText(msg.to,"只限管理員")
+		    kuohuanhuan.sendText(msg.to,"只限管理員")
 
             elif msg.text in ["Joincancel off","Autojoincancel off"]:
 		if msg.from_ in admin:
                     wait["AutoJoinCancel"] = False
-                    yuhuan.sendText(msg.to,"自動取消群組邀請關閉")
+                    kuohuanhuan.sendText(msg.to,"自動取消群組邀請關閉")
 		else:
-		    yuhuan.sendText(msg.to,"只限管理員")		    
+		    kuohuanhuan.sendText(msg.to,"只限管理員")		    
 		    
  
             elif msg.text in ["Respon1 on"]:
@@ -1374,16 +1374,16 @@ def bot(op):
                     wait["detectMention2"] = False
                     wait["detectMention3"] = False
                     wait["kickMention"] = False
-                    yuhuan.sendText(msg.to,"自動回應1開啟")
+                    kuohuanhuan.sendText(msg.to,"自動回應1開啟")
 		else:
-		    yuhuan.sendText(msg.to,"只限管理員")
+		    kuohuanhuan.sendText(msg.to,"只限管理員")
 
             elif msg.text in ["Respon1 off"]:
 		if msg.from_ in admin:
                     wait["detectMention"] = False
-                    yuhuan.sendText(msg.to,"自動回應1關閉")
+                    kuohuanhuan.sendText(msg.to,"自動回應1關閉")
 		else:
-		    yuhuan.sendText(msg.to,"只限管理員")	
+		    kuohuanhuan.sendText(msg.to,"只限管理員")	
 		    
 		    
             elif msg.text in ["Respon2 on"]:
@@ -1392,15 +1392,15 @@ def bot(op):
                     wait["detectMention2"] = True
                     wait["detectMention3"] = False
                     wait["kickMention"] = False
-                    yuhuan.sendText(msg.to,"自動回應2開啟")
+                    kuohuanhuan.sendText(msg.to,"自動回應2開啟")
 		else:
-		    yuhuan.sendText(msg.to,"只限管理員")
+		    kuohuanhuan.sendText(msg.to,"只限管理員")
             elif msg.text in ["Respon2 off"]:
 		if msg.from_ in admin:
                     wait["detectMention2"] = False
-                    yuhuan.sendText(msg.to,"自動回應2關閉")
+                    kuohuanhuan.sendText(msg.to,"自動回應2關閉")
 		else:
-		    yuhuan.sendText(msg.to,"只限管理員")	
+		    kuohuanhuan.sendText(msg.to,"只限管理員")	
 		    
 
             elif msg.text in ["Respon3 on"]:
@@ -1409,16 +1409,16 @@ def bot(op):
                     wait["detectMention2"] = False
                     wait["detectMention3"] = True
                     wait["kickMention"] = False
-                    yuhuan.sendText(msg.to,"自動回應3開啟")
+                    kuohuanhuan.sendText(msg.to,"自動回應3開啟")
 		else:
-		    yuhuan.sendText(msg.to,"只限管理員")
+		    kuohuanhuan.sendText(msg.to,"只限管理員")
 
             elif msg.text in ["Respon3 off"]:
 		if msg.from_ in admin:
                     wait["detectMention3"] = False
-                    yuhuan.sendText(msg.to,"自動回應3關閉")
+                    kuohuanhuan.sendText(msg.to,"自動回應3關閉")
 		else:
-		    yuhuan.sendText(msg.to,"只限管理員")	
+		    kuohuanhuan.sendText(msg.to,"只限管理員")	
 		    
  
             elif msg.text in ["Responkick on"]:
@@ -1427,80 +1427,80 @@ def bot(op):
                     wait["detectMention"] = False
                     wait["detectMention2"] = False
                     wait["detectMention3"] = False                    
-                    yuhuan.sendText(msg.to,"標記踢出開啟")
+                    kuohuanhuan.sendText(msg.to,"標記踢出開啟")
 		else:
-		    yuhuan.sendText(msg.to,"只限管理員")
+		    kuohuanhuan.sendText(msg.to,"只限管理員")
 
             elif msg.text in ["Responkick off"]:
 		if msg.from_ in admin:
                     wait["kickMention"] = False                    
-                    yuhuan.sendText(msg.to,"標記踢出關閉")
+                    kuohuanhuan.sendText(msg.to,"標記踢出關閉")
 		else:
-		    yuhuan.sendText(msg.to,"只限管理員")			  
+		    kuohuanhuan.sendText(msg.to,"只限管理員")			  
 		    
  
 	    elif msg.text in ["Autocancel on"]:
 	     if msg.from_ in admin:	        
                 wait["AutoCancel"] = True
-                yuhuan.sendText(msg.to,"自動取消開啟")
+                kuohuanhuan.sendText(msg.to,"自動取消開啟")
 		print wait["AutoCancel"]
 	     else:
-		    yuhuan.sendText(msg.to,"只限管理員")		
+		    kuohuanhuan.sendText(msg.to,"只限管理員")		
 
 	    elif msg.text in ["Autocancel off"]:
 	     if msg.from_ in admin:	        
                 wait["AutoCancel"] = False
-                yuhuan.sendText(msg.to,"自動取消關閉")
+                kuohuanhuan.sendText(msg.to,"自動取消關閉")
 		print wait["AutoCancel"]
 	     else:
-		    yuhuan.sendText(msg.to,"只限管理員")	
+		    kuohuanhuan.sendText(msg.to,"只限管理員")	
 		    
 
 	    elif msg.text in ["Invitepro on"]:
 	     if msg.from_ in admin:	        
                 wait["inviteprotect"] = True
-                yuhuan.sendText(msg.to,"邀請保護開啟")
+                kuohuanhuan.sendText(msg.to,"邀請保護開啟")
 		print wait["inviteprotect"]
 	     else:
-		    yuhuan.sendText(msg.to,"只限管理員")		
+		    kuohuanhuan.sendText(msg.to,"只限管理員")		
 
 	    elif msg.text in ["Invitepro off"]:
 	     if msg.from_ in admin:	        
                 wait["inviteprotect"] = False
-                yuhuan.sendText(msg.to,"邀請保護關閉")
+                kuohuanhuan.sendText(msg.to,"邀請保護關閉")
 		print wait["inviteprotect"]
 	     else:
-		    yuhuan.sendText(msg.to,"只限管理員")		    
+		    kuohuanhuan.sendText(msg.to,"只限管理員")		    
 
 	    elif "Qr on" in msg.text:
 	     if msg.from_ in admin:	        
 	        wait["Qr"] = True
-	    	yuhuan.sendText(msg.to,"QR邀請保護開啟")
+	    	kuohuanhuan.sendText(msg.to,"QR邀請保護開啟")
 	     else:
-		    yuhuan.sendText(msg.to,"只限管理員")	    	
+		    kuohuanhuan.sendText(msg.to,"只限管理員")	    	
 
 	    elif "Qr off" in msg.text:
 	     if msg.from_ in admin:	        
 	    	wait["Qr"] = False
-	    	yuhuan.sendText(msg.to,"Qr邀請保護關閉")
+	    	kuohuanhuan.sendText(msg.to,"Qr邀請保護關閉")
 	     else:
-		    yuhuan.sendText(msg.to,"只限管理員")	    	
+		    kuohuanhuan.sendText(msg.to,"只限管理員")	    	
 
                         
 
 	    elif "Autokick on" in msg.text:
 	     if msg.from_ in admin:	 	        
 		     wait["AutoKick"] = True
-		     yuhuan.sendText(msg.to,"踢人保護開啟")
+		     kuohuanhuan.sendText(msg.to,"踢人保護開啟")
 	     else:
-	        yuhuan.sendText(msg.to,"只限管理員")	     
+	        kuohuanhuan.sendText(msg.to,"只限管理員")	     
 
 	    elif "Autokick off" in msg.text:
 	     if msg.from_ in admin:	 	        
 		     wait["AutoKick"] = False
-		     yuhuan.sendText(msg.to,"踢人保護關閉")
+		     kuohuanhuan.sendText(msg.to,"踢人保護關閉")
 	     else:
-	        yuhuan.sendText(msg.to,"只限管理員")	     
+	        kuohuanhuan.sendText(msg.to,"只限管理員")	     
 
 
             elif msg.text in ["Allprotect on"]:
@@ -1509,9 +1509,9 @@ def bot(op):
                     wait["inviteprotect"] = True                   
                     wait["AutoKick"] = True
                     wait["Qr"] = True
-                    yuhuan.sendText(msg.to,"防翻設定全開")
+                    kuohuanhuan.sendText(msg.to,"防翻設定全開")
 		else:
-		    yuhuan.sendText(msg.to,"只限管理員")
+		    kuohuanhuan.sendText(msg.to,"只限管理員")
 
             elif msg.text in ["Allprotect off"]:
 		if msg.from_ in admin:
@@ -1519,46 +1519,46 @@ def bot(op):
                     wait["inviteprotect"] = False                    
                     wait["AutoKick"] = False
                     wait["Qr"] = False
-                    yuhuan.sendText(msg.to,"防翻設定全關")
+                    kuohuanhuan.sendText(msg.to,"防翻設定全關")
 		else:
-		    yuhuan.sendText(msg.to,"只限管理員")
+		    kuohuanhuan.sendText(msg.to,"只限管理員")
 
 
             elif msg.text in ["K on","Contact on"]:
                 wait["Contact"] = True
-                yuhuan.sendText(msg.to,"聯絡人開啓")
+                kuohuanhuan.sendText(msg.to,"聯絡人開啓")
 
             elif msg.text in ["K off","Contact off"]:
                 wait["Contact"] = False
-                yuhuan.sendText(msg.to,"聯絡人關閉")
+                kuohuanhuan.sendText(msg.to,"聯絡人關閉")
                 
 
             elif msg.text in ["Alwaysread on"]:
                 wait["alwaysRead"] = True
-                yuhuan.sendText(msg.to,"自動已讀開啟")
+                kuohuanhuan.sendText(msg.to,"自動已讀開啟")
 
             elif msg.text in ["Alwaysread off"]:
                 wait["alwaysRead"] = False
-                yuhuan.sendText(msg.to,"自動已讀關閉")                
+                kuohuanhuan.sendText(msg.to,"自動已讀關閉")                
 
 
             elif msg.text in ["Notif on"]:
                 if wait["Sambutan"] == True:
                     if wait["lang"] == "JP":
-                        yuhuan.sendText(msg.to,"歡迎啟用ヾ(*´∀｀*)ﾉ")
+                        kuohuanhuan.sendText(msg.to,"歡迎啟用ヾ(*´∀｀*)ﾉ")
                 else:
                     wait["Sambutan"] = True
                     if wait["lang"] == "JP":
-                        yuhuan.sendText(msg.to,"已經被開啟ヽ(´▽｀)/")
+                        kuohuanhuan.sendText(msg.to,"已經被開啟ヽ(´▽｀)/")
 
             elif msg.text in ["Notif off"]:
                 if wait["Sambutan"] == False:
                     if wait["lang"] == "JP":
-                        yuhuan.sendText(msg.to,"歡迎禁用(　＾∇＾)")
+                        kuohuanhuan.sendText(msg.to,"歡迎禁用(　＾∇＾)")
                 else:
                     wait["Sambutan"] = False
                     if wait["lang"] == "JP":
-                        yuhuan.sendText(msg.to,"已經被禁用(p′︵‵。)")
+                        kuohuanhuan.sendText(msg.to,"已經被禁用(p′︵‵。)")
                         
                         
             elif "Sider on" in msg.text:
@@ -1572,15 +1572,15 @@ def bot(op):
                 cctv['sidermem'][msg.to] = ""
                 cctv['cyduk'][msg.to]=True
                 wait["Sider"] = True
-                yuhuan.sendText(msg.to,"準備頁面審查")
+                kuohuanhuan.sendText(msg.to,"準備頁面審查")
                 
             elif "Sider off" in msg.text:
                 if msg.to in cctv['point']:
                     cctv['cyduk'][msg.to]=False
                     wait["Sider"] = False
-                    yuhuan.sendText(msg.to, "取消頁面審查")
+                    kuohuanhuan.sendText(msg.to, "取消頁面審查")
                 else:
-                    yuhuan.sendText(msg.to, "error")                         
+                    kuohuanhuan.sendText(msg.to, "error")                         
 
 
             elif msg.text in ["Status"]:
@@ -1615,7 +1615,7 @@ def bot(op):
 		else:md+="╠➩❌ Auto Sider: Off\n"	
 		if wait["Simi"] == True: md+="╠➩✔️ Simisimi : On\n"
 		else:md+="╠➩❌ Simisimi: Off\n"		
-                yuhuan.sendText(msg.to,"╔═════════════════════════\n""║           ☆☞ S T A T U S ☜☆\n""╠═════════════════════════\n"+md+"╚═════════════════════════")
+                kuohuanhuan.sendText(msg.to,"╔═════════════════════════\n""║           ☆☞ S T A T U S ☜☆\n""╠═════════════════════════\n"+md+"╚═════════════════════════")
 
 
             elif msg.text in ["Gift","gift"]:
@@ -1624,7 +1624,7 @@ def bot(op):
                                     'PRDTYPE': 'THEME',
                                     'MSGTPL': '8'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
                 
                 
             elif "Gift1 " in msg.text:
@@ -1634,7 +1634,7 @@ def bot(op):
                        nk2 = nk1.replace("@","")
                        nk3 = nk2.rstrip()
                        _name = nk3
-                       gs = yuhuan.getGroup(msg.to)
+                       gs = kuohuanhuan.getGroup(msg.to)
                        targets = []
                        for s in gs.members:
                            if _name in s.displayName:
@@ -1645,7 +1645,7 @@ def bot(op):
                        else:
                            for target in targets:
                                 try:
-                                    yuhuan.sendText(msg.to,_name + " Check Your Gift")
+                                    kuohuanhuan.sendText(msg.to,_name + " Check Your Gift")
                                     msg.contentType = 9
                                     msg.contentMetadata= {'PRDTYPE': 'STICKER',
                                                          'STKVER': '1',
@@ -1653,7 +1653,7 @@ def bot(op):
                                                          'STKPKGID': '1380280'}
                                     msg.to = target
                                     msg.text = None
-                                    yuhuan.sendMessage(msg)
+                                    kuohuanhuan.sendMessage(msg)
                                 except:
                                     msg.contentMetadata = {'mid': target}
 
@@ -1664,7 +1664,7 @@ def bot(op):
                        nk2 = nk1.replace("@","")
                        nk3 = nk2.rstrip()
                        _name = nk3
-                       gs = yuhuan.getGroup(msg.to)
+                       gs = kuohuanhuan.getGroup(msg.to)
                        targets = []
                        for s in gs.members:
                            if _name in s.displayName:
@@ -1675,7 +1675,7 @@ def bot(op):
                        else:
                            for target in targets:
                                 try:
-                                    yuhuan.sendText(msg.to,_name + " Check Your Gift")
+                                    kuohuanhuan.sendText(msg.to,_name + " Check Your Gift")
                                     msg.contentType = 9
                                     msg.contentMetadata= {'PRDTYPE': 'STICKER',
                                                          'STKVER': '1',
@@ -1683,7 +1683,7 @@ def bot(op):
                                                          'STKPKGID': '1360738'}
                                     msg.to = target
                                     msg.text = None
-                                    yuhuan.sendMessage(msg)
+                                    kuohuanhuan.sendMessage(msg)
                                 except:
                                     msg.contentMetadata = {'mid': target}
 
@@ -1694,7 +1694,7 @@ def bot(op):
                        nk2 = nk1.replace("@","")
                        nk3 = nk2.rstrip()
                        _name = nk3
-                       gs = yuhuan.getGroup(msg.to)
+                       gs = kuohuanhuan.getGroup(msg.to)
                        targets = []
                        for s in gs.members:
                            if _name in s.displayName:
@@ -1705,7 +1705,7 @@ def bot(op):
                        else:
                            for target in targets:
                                 try:
-                                    yuhuan.sendText(msg.to,_name + " Check Your Gift")
+                                    kuohuanhuan.sendText(msg.to,_name + " Check Your Gift")
                                     msg.contentType = 9
                                     msg.contentMetadata= {'PRDTYPE': 'STICKER',
                                                          'STKVER': '1',
@@ -1713,7 +1713,7 @@ def bot(op):
                                                          'STKPKGID': '1395389'}
                                     msg.to = target
                                     msg.text = None
-                                    yuhuan.sendMessage(msg)
+                                    kuohuanhuan.sendMessage(msg)
                                 except:
                                     msg.contentMetadata = {'mid': target}
 
@@ -1724,7 +1724,7 @@ def bot(op):
                        nk2 = nk1.replace("@","")
                        nk3 = nk2.rstrip()
                        _name = nk3
-                       gs = yuhuan.getGroup(msg.to)
+                       gs = kuohuanhuan.getGroup(msg.to)
                        targets = []
                        for s in gs.members:
                            if _name in s.displayName:
@@ -1735,7 +1735,7 @@ def bot(op):
                        else:
                            for target in targets:
                                 try:
-                                    yuhuan.sendText(msg.to,_name + " Check Your Gift")
+                                    kuohuanhuan.sendText(msg.to,_name + " Check Your Gift")
                                     msg.contentType = 9
                                     msg.contentMetadata= {'PRDTYPE': 'STICKER',
                                                          'STKVER': '1',
@@ -1743,7 +1743,7 @@ def bot(op):
                                                          'STKPKGID': '1329191'}
                                     msg.to = target
                                     msg.text = None
-                                    yuhuan.sendMessage(msg)
+                                    kuohuanhuan.sendMessage(msg)
                                 except:
                                     msg.contentMetadata = {'mid': target}
 
@@ -1754,7 +1754,7 @@ def bot(op):
                        nk2 = nk1.replace("@","")
                        nk3 = nk2.rstrip()
                        _name = nk3
-                       gs = yuhuan.getGroup(msg.to)
+                       gs = kuohuanhuan.getGroup(msg.to)
                        targets = []
                        for s in gs.members:
                            if _name in s.displayName:
@@ -1765,7 +1765,7 @@ def bot(op):
                        else:
                            for target in targets:
                                 try:
-                                    yuhuan.sendText(msg.to,_name + " Check Your Gift")
+                                    kuohuanhuan.sendText(msg.to,_name + " Check Your Gift")
                                     msg.contentType = 9
                                     msg.contentMetadata= {'PRDTYPE': 'STICKER',
                                                          'STKVER': '1',
@@ -1773,7 +1773,7 @@ def bot(op):
                                                          'STKPKGID': '9057'}
                                     msg.to = target
                                     msg.text = None
-                                    yuhuan.sendMessage(msg)
+                                    kuohuanhuan.sendMessage(msg)
                                 except:
                                     msg.contentMetadata = {'mid': target}
 
@@ -1784,7 +1784,7 @@ def bot(op):
                        nk2 = nk1.replace("@","")
                        nk3 = nk2.rstrip()
                        _name = nk3
-                       gs = yuhuan.getGroup(msg.to)
+                       gs = kuohuanhuan.getGroup(msg.to)
                        targets = []
                        for s in gs.members:
                            if _name in s.displayName:
@@ -1795,7 +1795,7 @@ def bot(op):
                        else:
                            for target in targets:
                                 try:
-                                    yuhuan.sendText(msg.to,_name + " Check Your Gift")
+                                    kuohuanhuan.sendText(msg.to,_name + " Check Your Gift")
                                     msg.contentType = 9
                                     msg.contentMetadata= {'PRDTYPE': 'STICKER',
                                                          'STKVER': '1',
@@ -1803,7 +1803,7 @@ def bot(op):
                                                          'STKPKGID': '9167'}
                                     msg.to = target
                                     msg.text = None
-                                    yuhuan.sendMessage(msg)
+                                    kuohuanhuan.sendMessage(msg)
                                 except:
                                     msg.contentMetadata = {'mid': target}
 
@@ -1814,7 +1814,7 @@ def bot(op):
                        nk2 = nk1.replace("@","")
                        nk3 = nk2.rstrip()
                        _name = nk3
-                       gs = yuhuan.getGroup(msg.to)
+                       gs = kuohuanhuan.getGroup(msg.to)
                        targets = []
                        for s in gs.members:
                            if _name in s.displayName:
@@ -1825,7 +1825,7 @@ def bot(op):
                        else:
                            for target in targets:
                                 try:
-                                    yuhuan.sendText(msg.to,_name + " Check Your Gift")
+                                    kuohuanhuan.sendText(msg.to,_name + " Check Your Gift")
                                     msg.contentType = 9
                                     msg.contentMetadata= {'PRDTYPE': 'STICKER',
                                                          'STKVER': '1',
@@ -1833,7 +1833,7 @@ def bot(op):
                                                          'STKPKGID': '7334'}
                                     msg.to = target
                                     msg.text = None
-                                    yuhuan.sendMessage(msg)
+                                    kuohuanhuan.sendMessage(msg)
                                 except:
                                     msg.contentMetadata = {'mid': target}
 
@@ -1844,7 +1844,7 @@ def bot(op):
                        nk2 = nk1.replace("@","")
                        nk3 = nk2.rstrip()
                        _name = nk3
-                       gs = yuhuan.getGroup(msg.to)
+                       gs = kuohuanhuan.getGroup(msg.to)
                        targets = []
                        for s in gs.members:
                            if _name in s.displayName:
@@ -1855,7 +1855,7 @@ def bot(op):
                        else:
                            for target in targets:
                                 try:
-                                    yuhuan.sendText(msg.to,_name + " Check Your Gift")
+                                    kuohuanhuan.sendText(msg.to,_name + " Check Your Gift")
                                     msg.contentType = 9
                                     msg.contentMetadata= {'PRDTYPE': 'STICKER',
                                                          'STKVER': '1',
@@ -1863,7 +1863,7 @@ def bot(op):
                                                          'STKPKGID': '1380280'}
                                     msg.to = target
                                     msg.text = None
-                                    yuhuan.sendMessage(msg)
+                                    kuohuanhuan.sendMessage(msg)
                                 except:
                                     msg.contentMetadata = {'mid': target}
 
@@ -1874,7 +1874,7 @@ def bot(op):
                        nk2 = nk1.replace("@","")
                        nk3 = nk2.rstrip()
                        _name = nk3
-                       gs = yuhuan.getGroup(msg.to)
+                       gs = kuohuanhuan.getGroup(msg.to)
                        targets = []
                        for s in gs.members:
                            if _name in s.displayName:
@@ -1885,7 +1885,7 @@ def bot(op):
                        else:
                            for target in targets:
                                 try:
-                                    yuhuan.sendText(msg.to,_name + " Check Your Gift")
+                                    kuohuanhuan.sendText(msg.to,_name + " Check Your Gift")
                                     msg.contentType = 9
                                     msg.contentMetadata= {'PRDTYPE': 'STICKER',
                                                          'STKVER': '1',
@@ -1893,7 +1893,7 @@ def bot(op):
                                                          'STKPKGID': '1405277'}
                                     msg.to = target
                                     msg.text = None
-                                    yuhuan.sendMessage(msg)
+                                    kuohuanhuan.sendMessage(msg)
                                 except:
                                     msg.contentMetadata = {'mid': target}
 
@@ -1904,7 +1904,7 @@ def bot(op):
                        nk2 = nk1.replace("@","")
                        nk3 = nk2.rstrip()
                        _name = nk3
-                       gs = yuhuan.getGroup(msg.to)
+                       gs = kuohuanhuan.getGroup(msg.to)
                        targets = []
                        for s in gs.members:
                            if _name in s.displayName:
@@ -1915,7 +1915,7 @@ def bot(op):
                        else:
                            for target in targets:
                                 try:
-                                    yuhuan.sendText(msg.to,_name + " Check Your Gift")
+                                    kuohuanhuan.sendText(msg.to,_name + " Check Your Gift")
                                     msg.contentType = 9
                                     msg.contentMetadata= {'PRDTYPE': 'STICKER',
                                                          'STKVER': '1',
@@ -1923,7 +1923,7 @@ def bot(op):
                                                          'STKPKGID': '1296261'}
                                     msg.to = target
                                     msg.text = None
-                                    yuhuan.sendMessage(msg)
+                                    kuohuanhuan.sendMessage(msg)
                                 except:
                                     msg.contentMetadata = {'mid': target}
 
@@ -1934,7 +1934,7 @@ def bot(op):
                                     'STKPKGID': '1',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif msg.text.lower() in ["hehehe","hehe"]:
                 msg.contentType = 7
@@ -1942,7 +1942,7 @@ def bot(op):
                                     'STKPKGID': '1',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif msg.text.lower() in ["galau"]:
                 msg.contentType = 7
@@ -1950,7 +1950,7 @@ def bot(op):
                                     'STKPKGID': '1',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif msg.text.lower() in ["you","kau","kamu"]:
                 msg.contentType = 7
@@ -1958,7 +1958,7 @@ def bot(op):
                                     'STKPKGID': '1',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif msg.text.lower() in ["marah","hadeuh","hadeh"]:
                 msg.contentType = 7
@@ -1966,7 +1966,7 @@ def bot(op):
                                     'STKPKGID': '1',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif msg.text.lower() in ["please","pliss","mohon","tolong"]:
                 msg.contentType = 7
@@ -1974,7 +1974,7 @@ def bot(op):
                                     'STKPKGID': '1',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif msg.text.lower() in ["haa","haaa","kaget"]:
                 msg.contentType = 7
@@ -1982,7 +1982,7 @@ def bot(op):
                                     'STKPKGID': '1',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif msg.text.lower() in ["lucu","ngakak","lol"]:
                 msg.contentType = 7
@@ -1990,7 +1990,7 @@ def bot(op):
                                     'STKPKGID': '1',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif msg.text.lower() in ["hmm","hmmm"]:
                 msg.contentType = 7
@@ -1998,7 +1998,7 @@ def bot(op):
                                     'STKPKGID': '1',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif msg.text.lower() in ["tidur"]:
                 msg.contentType = 7
@@ -2006,7 +2006,7 @@ def bot(op):
                                     'STKPKGID': '1',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif msg.text.lower() in ["gemes"]:
                 msg.contentType = 7
@@ -2014,7 +2014,7 @@ def bot(op):
                                     'STKPKGID': '1',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif msg.text.lower() in ["cantik","imut"]:
                 msg.contentType = 7
@@ -2022,7 +2022,7 @@ def bot(op):
                                     'STKPKGID': '1',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif msg.text.lower() in ["nyanyi","lalala"]:
                 msg.contentType = 7
@@ -2030,7 +2030,7 @@ def bot(op):
                                     'STKPKGID': '1',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif msg.text.lower() in ["gugup"]:
                 msg.contentType = 7
@@ -2038,7 +2038,7 @@ def bot(op):
                                     'STKPKGID': '1',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif msg.text.lower() in ["ok","oke","okay","oce","okee","sip","siph"]:
                 msg.contentType = 7
@@ -2046,7 +2046,7 @@ def bot(op):
                                     'STKPKGID': '1',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif msg.text.lower() in ["mantab","mantap","nice","keren"]:
                 msg.contentType = 7
@@ -2054,7 +2054,7 @@ def bot(op):
                                     'STKPKGID': '1',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif msg.text.lower() in ["ngejek"]:
                 msg.contentType = 7
@@ -2062,7 +2062,7 @@ def bot(op):
                                     'STKPKGID': '1',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif msg.text.lower() in ["nangis","sedih"]:
                 msg.contentType = 7
@@ -2070,7 +2070,7 @@ def bot(op):
                                     'STKPKGID': '1',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif msg.text.lower() in ["woi","kampret"]:
                 msg.contentType = 7
@@ -2078,7 +2078,7 @@ def bot(op):
                                     'STKPKGID': '1',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif msg.text.lower() in ["huft"]:
                 msg.contentType = 7
@@ -2086,11 +2086,11 @@ def bot(op):
                                     'STKPKGID': '1',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
                 
 
             elif "tag all" == msg.text.lower():
-                 group = yuhuan.getGroup(msg.to)
+                 group = kuohuanhuan.getGroup(msg.to)
                  nama = [contact.mid for contact in group.members]
                  nm1, nm2, nm3, nm4, nm5, jml = [], [], [], [], [], len(nama)
                  if jml <= 100:
@@ -2146,10 +2146,10 @@ def bot(op):
                  cnt = Message()
                  cnt.text = "Jumlah:\n" + str(jml) +  " Members"
                  cnt.to = msg.to
-                 yuhuan.sendMessage(cnt)
+                 kuohuanhuan.sendMessage(cnt)
                  
             elif "tagall" == msg.text.lower():
-                 group = yuhuan.getGroup(msg.to)
+                 group = kuohuanhuan.getGroup(msg.to)
                  nama = [contact.mid for contact in group.members]
                  nm1, nm2, nm3, nm4, nm5, jml = [], [], [], [], [], len(nama)
                  if jml <= 100:
@@ -2205,12 +2205,12 @@ def bot(op):
                  cnt = Message()
                  cnt.text = "Jumlah:\n" + str(jml) +  " Members"
                  cnt.to = msg.to
-                 yuhuan.sendMessage(cnt)                 
+                 kuohuanhuan.sendMessage(cnt)                 
 
 
             elif msg.text in ["Setview","Setpoint","Cctv"]:
                 subprocess.Popen("echo '' > dataSeen/"+msg.to+".txt", shell=True, stdout=subprocess.PIPE)
-                yuhuan.sendText(msg.to, "☆Checkpoint Checked☆")
+                kuohuanhuan.sendText(msg.to, "☆Checkpoint Checked☆")
                 print "Setview"
 
             elif msg.text in ["Viewseen","Check","Ciduk","Cyduk"]:
@@ -2236,7 +2236,7 @@ def bot(op):
                         except IndexError:
                             conName.append('nones')
                             pass
-                    contactId = yuhuan.getContacts(recheckData)
+                    contactId = kuohuanhuan.getContacts(recheckData)
                     for v in range(len(recheckData)):
                         dataResult.append(contactId[v].displayName + ' ('+timeSeen[v]+')')
                         pass
@@ -2244,11 +2244,11 @@ def bot(op):
                         tukang = "╔═════════════════════════\n║         ☆☞ LIST VIEWERS ☜☆\n╠═════════════════════════\n╠➩"
                         grp = '\n╠➩ '.join(str(f) for f in dataResult)
                         total = '\n╠═════════════════════════\n╠➩ Total %i Viewers (%s)' % (len(dataResult), datetime.now().strftime('%H:%M:%S')) + "\n╚═════════════════════════"
-                        yuhuan.sendText(msg.to, "%s %s %s" % (tukang, grp, total))
+                        kuohuanhuan.sendText(msg.to, "%s %s %s" % (tukang, grp, total))
                         subprocess.Popen("echo '' > dataSeen/"+msg.to+".txt", shell=True, stdout=subprocess.PIPE)
-                        yuhuan.sendText(msg.to, "☆Auto Checkpoint☆")                        
+                        kuohuanhuan.sendText(msg.to, "☆Auto Checkpoint☆")                        
                     else:
-                        yuhuan.sendText(msg.to, "☆Belum Ada Viewers☆")
+                        kuohuanhuan.sendText(msg.to, "☆Belum Ada Viewers☆")
                     print "Viewseen"
 
 
@@ -2260,168 +2260,168 @@ def bot(op):
 		        mentionees = mention['MENTIONEES']
 		        print mentionees
 		        for mention in mentionees:
-			    yuhuan.kickoutFromGroup(msg.to,[mention['M']])
+			    kuohuanhuan.kickoutFromGroup(msg.to,[mention['M']])
 
 	    elif "Set member: " in msg.text:
 		if msg.from_ in admin:	 	        
 		    jml = msg.text.replace("Set member: ","")
 		    wait["Members"] = int(jml)
-		    yuhuan.sendText(msg.to, "已設定最低成員數 : "+jml)
+		    kuohuanhuan.sendText(msg.to, "已設定最低成員數 : "+jml)
 
 	    elif "Add all" in msg.text:
-		    thisgroup = yuhuan.getGroups([msg.to])
+		    thisgroup = kuohuanhuan.getGroups([msg.to])
 		    Mids = [contact.mid for contact in thisgroup[0].members]
 		    mi_d = Mids[:33]
-		    yuhuan.findAndAddContactsByMids(mi_d)
-		    yuhuan.sendText(msg.to,"成功邀請所有成員")
+		    kuohuanhuan.findAndAddContactsByMids(mi_d)
+		    kuohuanhuan.sendText(msg.to,"成功邀請所有成員")
 
 
             elif msg.text in ["Invite"]:
                 wait["invite"] = True
-                yuhuan.sendText(msg.to,"請給友資")
+                kuohuanhuan.sendText(msg.to,"請給友資")
                 
                 
 
             elif msg.text in ["Auto like"]:
                 wait["likeOn"] = True
-                yuhuan.sendText(msg.to,"自動貼文讚好")                
+                kuohuanhuan.sendText(msg.to,"自動貼文讚好")                
 
 
             elif msg.text in ["Steal contact"]:
                 wait["steal"] = True
-                yuhuan.sendText(msg.to,"請給友資")
+                kuohuanhuan.sendText(msg.to,"請給友資")
                 
 
             elif msg.text in ["Giftbycontact"]:
                 wait["gift"] = True
-                yuhuan.sendText(msg.to,"請給友資") 
+                kuohuanhuan.sendText(msg.to,"請給友資") 
                 
             elif msg.text in ["Copycontact"]:
                 wait["copy"] = True
-                yuhuan.sendText(msg.to,"請給友資") 
+                kuohuanhuan.sendText(msg.to,"請給友資") 
                 
             elif msg.text in ["Sticker on"]:
                 wait["sticker"] = True
-                yuhuan.sendText(msg.to,"貼紙ID檢測已經開啟")  
+                kuohuanhuan.sendText(msg.to,"貼紙ID檢測已經開啟")  
                 
             elif msg.text in ["Bot off"]:
                 wait["Bot"] = False
-                yuhuan.sendText(msg.to,"機器人已被禁用")  
+                kuohuanhuan.sendText(msg.to,"機器人已被禁用")  
 
 	    elif "Recover" in msg.text:
-		thisgroup = yuhuan.getGroups([msg.to])
+		thisgroup = kuohuanhuan.getGroups([msg.to])
 		Mids = [contact.mid for contact in thisgroup[0].members]
 		mi_d = Mids[:33]
-		yuhuan.createGroup("Recover", mi_d)
-		yuhuan.sendText(msg.to,"成功恢復")
+		kuohuanhuan.createGroup("Recover", mi_d)
+		kuohuanhuan.sendText(msg.to,"成功恢復")
 
 
 
             elif ("Gn: " in msg.text):
                 if msg.toType == 2:
-                    X = yuhuan.getGroup(msg.to)
+                    X = kuohuanhuan.getGroup(msg.to)
                     X.name = msg.text.replace("Gn: ","")
-                    yuhuan.updateGroup(X)
+                    kuohuanhuan.updateGroup(X)
                 else:
-                    yuhuan.sendText(msg.to,"除了群組之外不能使用")
+                    kuohuanhuan.sendText(msg.to,"除了群組之外不能使用")
 
             elif "Kick: " in msg.text:
                 midd = msg.text.replace("Kick: ","")
 		if midd not in admin:
-		    yuhuan.kickoutFromGroup(msg.to,[midd])
+		    kuohuanhuan.kickoutFromGroup(msg.to,[midd])
 		else:
-		    yuhuan.sendText(msg.to,"管理員偵測")
+		    kuohuanhuan.sendText(msg.to,"管理員偵測")
 
             elif "Invite: " in msg.text:
                 midd = msg.text.replace("Invite: ","")
-                yuhuan.findAndAddContactsByMid(midd)
-                yuhuan.inviteIntoGroup(msg.to,[midd])
+                kuohuanhuan.findAndAddContactsByMid(midd)
+                kuohuanhuan.inviteIntoGroup(msg.to,[midd])
 
             elif "Invite creator" in msg.text:
                 midd = "uda936836a9869eb86ec8ab992a4e8979"
-                yuhuan.inviteIntoGroup(msg.to,[midd])
+                kuohuanhuan.inviteIntoGroup(msg.to,[midd])
 
             elif msg.text in ["Welcome","welcome","Welkam","welkam","Wc","wc"]:
-                gs = yuhuan.getGroup(msg.to)
-                yuhuan.sendText(msg.to,"歡迎加入 "+ gs.name)
+                gs = kuohuanhuan.getGroup(msg.to)
+                kuohuanhuan.sendText(msg.to,"歡迎加入 "+ gs.name)
                 msg.contentType = 7
                 msg.contentMetadata={'STKID': '247',
                                     'STKPKGID': '3',
                                     'STKVER': '100'}
                 msg.text = None
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
 	    elif "Bc: " in msg.text:
 		bc = msg.text.replace("Bc: ","")
-		gid = yuhuan.getGroupIdsJoined()
+		gid = kuohuanhuan.getGroupIdsJoined()
 		if msg.from_ in Creator:
 		    for i in gid:
-			yuhuan.sendText(i,"=======[BROADCAST]=======\n\n"+bc+"\n\nContact Me : line.me/ti/p/~nad_nad.")
-		    yuhuan.sendText(msg.to,"Success BC BosQ")
+			kuohuanhuan.sendText(i,"=======[BROADCAST]=======\n\n"+bc+"\n\nContact Me : line.me/ti/p/~nad_nad.")
+		    kuohuanhuan.sendText(msg.to,"Success BC BosQ")
 		else:
-		    yuhuan.sendText(msg.to,"只限管理員")
+		    kuohuanhuan.sendText(msg.to,"只限管理員")
 
             elif msg.text in ["Cancel"]:
-                gid = yuhuan.getGroupIdsInvited()
+                gid = kuohuanhuan.getGroupIdsInvited()
                 for i in gid:
-                    yuhuan.rejectGroupInvitation(i)
-                yuhuan.sendText(msg.to,"所有邀請都被拒絕了")
+                    kuohuanhuan.rejectGroupInvitation(i)
+                kuohuanhuan.sendText(msg.to,"所有邀請都被拒絕了")
 
             elif msg.text in ["Gurl"]:
                 if msg.toType == 2:
-                    x = yuhuan.getGroup(msg.to)
+                    x = kuohuanhuan.getGroup(msg.to)
                     if x.preventJoinByTicket == True:
                         x.preventJoinByTicket = False
-                        yuhuan.updateGroup(x)
-                    gurl = yuhuan.reissueGroupTicket(msg.to)
-                    yuhuan.sendText(msg.to,"line://ti/g/" + gurl)
+                        kuohuanhuan.updateGroup(x)
+                    gurl = kuohuanhuan.reissueGroupTicket(msg.to)
+                    kuohuanhuan.sendText(msg.to,"line://ti/g/" + gurl)
                 else:
                     if wait["lang"] == "JP":
-                        yuhuan.sendText(msg.to,"不能在群組外使用")
+                        kuohuanhuan.sendText(msg.to,"不能在群組外使用")
                     else:
-                        yuhuan.sendText(msg.to,"不能在群組外使用")
+                        kuohuanhuan.sendText(msg.to,"不能在群組外使用")
 
 
             elif msg.text in ["timeline"]:
 		try:
-                    url = yuhuan.activity(limit=5)
-		    yuhuan.sendText(msg.to,url['result']['posts'][0]['postInfo']['postId'])
+                    url = kuohuanhuan.activity(limit=5)
+		    kuohuanhuan.sendText(msg.to,url['result']['posts'][0]['postInfo']['postId'])
 		except Exception as E:
 		    print E
 
             elif msg.text in ["@bye","@Bye"]:
-		    yuhuan.leaveGroup(msg.to)		    
+		    kuohuanhuan.leaveGroup(msg.to)		    
 		    
 
             elif msg.text in ["Absen"]:
-		yuhuan.sendText(msg.to,"Hadir!!")
+		kuohuanhuan.sendText(msg.to,"Hadir!!")
 
 
             elif msg.text.lower() in ["respon"]:
-                yuhuan.sendText(msg.to,responsename)
+                kuohuanhuan.sendText(msg.to,responsename)
 
             elif msg.text in ["Sp","Speed","speed"]:
                 start = time.time()
                 print("Command:Speed")                
                 elapsed_time = time.time() - start
-		yuhuan.sendText(msg.to, "快好了催什麼")
-                yuhuan.sendText(msg.to, "%s秒" % (elapsed_time))
+		kuohuanhuan.sendText(msg.to, "快好了催什麼")
+                kuohuanhuan.sendText(msg.to, "%s秒" % (elapsed_time))
                 
             elif msg.text in ["Speed test"]:
                 start = time.time()
-                yuhuan.sendText(msg.to, "運行中...")
+                kuohuanhuan.sendText(msg.to, "運行中...")
                 elapsed_time = time.time() - start
-                yuhuan.sendText(msg.to, "%s秒" % (elapsed_time))                
+                kuohuanhuan.sendText(msg.to, "%s秒" % (elapsed_time))                
  
             elif msg.text in ["Ban"]:
                 if msg.from_ in admin:
                     wait["wblacklist"] = True
-                    yuhuan.sendText(msg.to,"請給友資")
+                    kuohuanhuan.sendText(msg.to,"請給友資")
 
             elif msg.text in ["Unban"]:
                 if msg.from_ in admin:
                     wait["dblacklist"] = True
-                    yuhuan.sendText(msg.to,"請給友資")
+                    kuohuanhuan.sendText(msg.to,"請給友資")
  
             elif "Ban @" in msg.text:
                 if msg.from_ in admin:
@@ -2429,13 +2429,13 @@ def bot(op):
                     print "@Ban by mention"
                     _name = msg.text.replace("Ban @","")
                     _nametarget = _name.rstrip('  ')
-                    gs = yuhuan.getGroup(msg.to)
+                    gs = kuohuanhuan.getGroup(msg.to)
                     targets = []
                     for g in gs.members:
                         if _nametarget == g.displayName:
                             targets.append(g.mid)
                     if targets == []:
-                        yuhuan.sendText(msg.to,"Not found")
+                        kuohuanhuan.sendText(msg.to,"Not found")
                     else:
                         for target in targets:
 			    if target not in admin:
@@ -2443,21 +2443,21 @@ def bot(op):
                                     wait["blacklist"][target] = True
                                     f=codecs.open('st2__b.json','w','utf-8')
                                     json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
-                                    yuhuan.sendText(msg.to,"Succes BosQ")
+                                    kuohuanhuan.sendText(msg.to,"Succes BosQ")
                                 except:
-                                    yuhuan.sendText(msg.to,"Error")
+                                    kuohuanhuan.sendText(msg.to,"Error")
 			    else:
-				yuhuan.sendText(msg.to,"管理員偵測")
+				kuohuanhuan.sendText(msg.to,"管理員偵測")
  
             elif msg.text in ["Banlist","Ban list"]:
               if msg.from_ in admin:
                 if wait["blacklist"] == {}:
-                    yuhuan.sendText(msg.to,"ñ")
+                    kuohuanhuan.sendText(msg.to,"ñ")
                 else:
                     mc = ""
                     for mi_d in wait["blacklist"]:
-                        mc += "->" +yuhuan.getContact(mi_d).displayName + "\n"
-                    yuhuan.sendText(msg.to,"===[Blacklist User]===\n"+mc)
+                        mc += "->" +kuohuanhuan.getContact(mi_d).displayName + "\n"
+                    kuohuanhuan.sendText(msg.to,"===[Blacklist User]===\n"+mc)
 
  
             elif "Unban @" in msg.text:
@@ -2466,61 +2466,61 @@ def bot(op):
                 if msg.from_ in admin:
                     _name = msg.text.replace("Unban @","")
                     _nametarget = _name.rstrip('  ')
-                    gs = yuhuan.getGroup(msg.to)
+                    gs = kuohuanhuan.getGroup(msg.to)
                     targets = []
                     for g in gs.members:
                         if _nametarget == g.displayName:
                             targets.append(g.mid)
                     if targets == []:
-                        yuhuan.sendText(msg.to,"Not found")
+                        kuohuanhuan.sendText(msg.to,"Not found")
                     else:
                         for target in targets:
                             try:
                                 del wait["blacklist"][target]
                                 f=codecs.open('st2__b.json','w','utf-8')
                                 json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
-                                yuhuan.sendText(msg.to,"成功解除")
+                                kuohuanhuan.sendText(msg.to,"成功解除")
                             except:
-                                yuhuan.sendText(msg.to,"成功解除")
+                                kuohuanhuan.sendText(msg.to,"成功解除")
                                 
                                 
             elif msg.text.lower() == 'clear ban':
                 if msg.from_ in admin:
                     wait["blacklist"] = {}
-                    yuhuan.sendText(msg.to,"ヽ( ^ω^)ﾉ└ ❉成功解除所有黑名單❉ ┐") 
+                    kuohuanhuan.sendText(msg.to,"ヽ( ^ω^)ﾉ└ ❉成功解除所有黑名單❉ ┐") 
 
  
             elif msg.text in ["Kill ban"]:
 		if msg.from_ in admin:
                     if msg.toType == 2:
-                        group = yuhuan.getGroup(msg.to)
+                        group = kuohuanhuan.getGroup(msg.to)
                         gMembMids = [contact.mid for contact in group.members]
                         matched_list = []
                         for tag in wait["blacklist"]:
                             matched_list+=filter(lambda str: str == tag, gMembMids)
                         if matched_list == []:
-                            yuhuan.sendText(msg.to,"沒有黑名單用戶")
+                            kuohuanhuan.sendText(msg.to,"沒有黑名單用戶")
                             return
                         for jj in matched_list:
-                            yuhuan.kickoutFromGroup(msg.to,[jj])
-                        yuhuan.sendText(msg.to,"黑名單用戶將被踢除")
+                            kuohuanhuan.kickoutFromGroup(msg.to,[jj])
+                        kuohuanhuan.sendText(msg.to,"黑名單用戶將被踢除")
 		else:
-		    yuhuan.sendText(msg.to, "只限創作者")
+		    kuohuanhuan.sendText(msg.to, "只限創作者")
  
             elif msg.text in ["Kill"]:
                     if msg.toType == 2:
                       if msg.from_ in admin:
-                        group = yuhuan.getGroup(msg.to)
+                        group = kuohuanhuan.getGroup(msg.to)
                         gMembMids = [contact.mid for contact in group.members]
                         matched_list = []
                         for tag in wait["blacklist"]:
                             matched_list+=filter(lambda str: str == tag, gMembMids)
                         if matched_list == []:
-                            yuhuan.sendText(msg.to,"幹你娘")
+                            kuohuanhuan.sendText(msg.to,"幹你娘")
                             return
                         for jj in matched_list:
                             try:
-                                yuhuan.kickoutFromGroup(msg.to,[jj])
+                                kuohuanhuan.kickoutFromGroup(msg.to,[jj])
                                 print (msg.to,[jj])
                             except:
                                 pass
@@ -2531,32 +2531,32 @@ def bot(op):
                      if msg.toType == 2:
                         print "Command:Kickall"
                         _name = msg.text.replace("Kickall","")
-                        gs = yuhuan.getGroup(msg.to)
-                        yuhuan.sendText(msg.to,"翻群囉~~~~")
+                        gs = kuohuanhuan.getGroup(msg.to)
+                        kuohuanhuan.sendText(msg.to,"翻群囉~~~~")
                         targets = []
                         for g in gs.members:
                             if _name in g.displayName:
                                 targets.append(g.mid)
                         if targets == []:
-                            yuhuan.sendText(msg.to,"Not found.")
+                            kuohuanhuan.sendText(msg.to,"Not found.")
                         else:
                             for target in targets:
 				if target not in admin:
                                     try:
-                                        yuhuan.kickoutFromGroup(msg.to,[target])
+                                        kuohuanhuan.kickoutFromGroup(msg.to,[target])
                                         print (msg.to,[g.mid])
                                     except Exception as e:
-                                        yuhuan.sendText(msg.to,str(e))
+                                        kuohuanhuan.sendText(msg.to,str(e))
 			
  
 
 	    elif msg.text in ["Bot restart","Reboot"]:
 		if msg.from_ in Creator:
-		    yuhuan.sendText(msg.to, "機器人已重啟...")
+		    kuohuanhuan.sendText(msg.to, "機器人已重啟...")
 		    restart_program()
 		    print "@Restart"
 		else:
-		    yuhuan.sendText(msg.to, "No Access")
+		    kuohuanhuan.sendText(msg.to, "No Access")
 		    
             elif msg.text in ["Turn off"]: 
 	        if msg.from_ in Creator:                
@@ -2571,35 +2571,35 @@ def bot(op):
               if msg.from_ in Creator:
                 msg.contentType = 13
                 msg.contentMetadata = {'mid': "yuhuan,'"}
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
  
             elif "copy @" in msg.text:
                    print "[COPY] Ok"
                    _name = msg.text.replace("copy @","")
                    _nametarget = _name.rstrip('  ')
-                   gs = yuhuan.getGroup(msg.to)
+                   gs = kuohuanhuan.getGroup(msg.to)
                    targets = []
                    for g in gs.members:
                        if _nametarget == g.displayName:
                            targets.append(g.mid)
                    if targets == []:
-                       yuhuan.sendText(msg.to, "Not Found...")
+                       kuohuanhuan.sendText(msg.to, "Not Found...")
                    else:
                        for target in targets:
                             try:
-                               yuhuan.CloneContactProfile(target)
-                               yuhuan.sendText(msg.to, "已複製 (^_^)")
+                               kuohuanhuan.CloneContactProfile(target)
+                               kuohuanhuan.sendText(msg.to, "已複製 (^_^)")
                             except Exception as e:
                                 print e
 
             elif msg.text in ["Mybackup"]:
                 try:
-                    yuhuan.updateDisplayPicture(backup1.pictureStatus)
-                    yuhuan.updateProfile(backup1)
-                    yuhuan.sendText(msg.to, "完成 (^_^)")
+                    kuohuanhuan.updateDisplayPicture(backup1.pictureStatus)
+                    kuohuanhuan.updateProfile(backup1)
+                    kuohuanhuan.sendText(msg.to, "完成 (^_^)")
                 except Exception as e:
-                    yuhuan.sendText(msg.to, str(e))
+                    kuohuanhuan.sendText(msg.to, str(e))
 
  
 	    elif "musik " in msg.text:
@@ -2610,10 +2610,10 @@ def bot(op):
 					data = json.loads(data)
 					for song in data:
 						abc = song[3].replace('https://','http://')
-						yuhuan.sendText(msg.to, "Title : " + song[0] + "\nLength : " + song[1] + "\nLink download : " + song[4])
-						yuhuan.sendText(msg.to, "Lagu " + song[0] + "\n運行中... 請稍侯 ^_^ ")
-						yuhuan.sendAudioWithURL(msg.to,abc)
-						yuhuan.sendText(msg.to, "請聆聽歌曲 " + song[0])
+						kuohuanhuan.sendText(msg.to, "Title : " + song[0] + "\nLength : " + song[1] + "\nLink download : " + song[4])
+						kuohuanhuan.sendText(msg.to, "Lagu " + song[0] + "\n運行中... 請稍侯 ^_^ ")
+						kuohuanhuan.sendAudioWithURL(msg.to,abc)
+						kuohuanhuan.sendText(msg.to, "請聆聽歌曲 " + song[0])
 	
             elif 'lirik ' in msg.text.lower():
                 try:
@@ -2627,9 +2627,9 @@ def bot(op):
                         hasil += song[0]
                         hasil += ')\n\n'
                         hasil += song[5]
-                        yuhuan.sendText(msg.to, hasil)
+                        kuohuanhuan.sendText(msg.to, hasil)
                 except Exception as wak:
-                        yuhuan.sendText(msg.to, str(wak))
+                        kuohuanhuan.sendText(msg.to, str(wak))
                         
 	    elif "musrik " in msg.text:
 					songname = msg.text.replace("musrik ","")
@@ -2643,16 +2643,16 @@ def bot(op):
 						hasil += song[0]
 						hasil += ')\n\n'
 						hasil += song[5]
-						yuhuan.sendText(msg.to, "Lagu " + song[0] + "\n運行中... 請稍侯 ^_^ ")
-						yuhuan.sendAudioWithURL(msg.to,abc)
-						yuhuan.sendText(msg.to, "Title : " + song[0] + "\nLength : " + song[1] + "\nLink download : " + song[4] +"\n\n" + hasil)
-						yuhuan.sendText(msg.to, "請聆聽歌曲 " + song[0])
+						kuohuanhuan.sendText(msg.to, "Lagu " + song[0] + "\n運行中... 請稍侯 ^_^ ")
+						kuohuanhuan.sendAudioWithURL(msg.to,abc)
+						kuohuanhuan.sendText(msg.to, "Title : " + song[0] + "\nLength : " + song[1] + "\nLink download : " + song[4] +"\n\n" + hasil)
+						kuohuanhuan.sendText(msg.to, "請聆聽歌曲 " + song[0])
              
             
             
             elif "Fancytext " in msg.text:
                     txt = msg.text.replace("Fancytext ", "")
-                    yuhuan.kedapkedip(msg.to,txt)
+                    kuohuanhuan.kedapkedip(msg.to,txt)
                     print "[Command] Kedapkedip"
 
 
@@ -2660,119 +2660,119 @@ def bot(op):
                 if msg.toType == 2:
                     cover = msg.text.replace("cover @","")
                     _nametarget = cover.rstrip('  ')
-                    gs = yuhuan.getGroup(msg.to)
+                    gs = kuohuanhuan.getGroup(msg.to)
                     targets = []
                     for g in gs.members:
                         if _nametarget == g.displayName:
                             targets.append(g.mid)
                     if targets == []:
-                        yuhuan.sendText(msg.to,"Not found")
+                        kuohuanhuan.sendText(msg.to,"Not found")
                     else:
                         for target in targets:
                             try:
-                                h = yuhuan.channel.getHome(target)
+                                h = kuohuanhuan.channel.getHome(target)
                                 objId = h["result"]["homeInfo"]["objectId"]
-                                yuhuan.sendImageWithURL(msg.to,"http://dl.profile.line-cdn.net/myhome/c/download.nhn?userid=" + target + "&oid=" + objId)
+                                kuohuanhuan.sendImageWithURL(msg.to,"http://dl.profile.line-cdn.net/myhome/c/download.nhn?userid=" + target + "&oid=" + objId)
                             except Exception as error:
                                 print error
-                                yuhuan.sendText(msg.to,"Upload image failed.")
+                                kuohuanhuan.sendText(msg.to,"Upload image failed.")
 
             elif "Cover @" in msg.text:
                 if msg.toType == 2:
                     cover = msg.text.replace("Cover @","")
                     _nametarget = cover.rstrip('  ')
-                    gs = yuhuan.getGroup(msg.to)
+                    gs = kuohuanhuan.getGroup(msg.to)
                     targets = []
                     for g in gs.members:
                         if _nametarget == g.displayName:
                             targets.append(g.mid)
                     if targets == []:
-                        yuhuan.sendText(msg.to,"Not found")
+                        kuohuanhuan.sendText(msg.to,"Not found")
                     else:
                         for target in targets:
                             try:
-                                h = yuhuan.channel.getHome(target)
+                                h = kuohuanhuan.channel.getHome(target)
                                 objId = h["result"]["homeInfo"]["objectId"]
-                                yuhuan.sendImageWithURL(msg.to,"http://dl.profile.line-cdn.net/myhome/c/download.nhn?userid=" + target + "&oid=" + objId)
+                                kuohuanhuan.sendImageWithURL(msg.to,"http://dl.profile.line-cdn.net/myhome/c/download.nhn?userid=" + target + "&oid=" + objId)
                             except Exception as error:
                                 print error
-                                yuhuan.sendText(msg.to,"Upload image failed.")
+                                kuohuanhuan.sendText(msg.to,"Upload image failed.")
                                 
             elif "Cpp" in msg.text:
                 if msg.from_ in admin:
-                    path = "yuhuan.jpg"
-                    yuhuan.sendText(msg.to,"Update PP :")
-                    yuhuan.sendImage(msg.to,path)
-                    yuhuan.updateProfilePicture(path)                                
+                    path = "kuohuanhuan.jpg"
+                    kuohuanhuan.sendText(msg.to,"Update PP :")
+                    kuohuanhuan.sendImage(msg.to,path)
+                    kuohuanhuan.updateProfilePicture(path)                                
                                 
                                 
             elif "pp @" in msg.text:
                 if msg.toType == 2:
                     cover = msg.text.replace("pp @","")
                     _nametarget = cover.rstrip('  ')
-                    gs = yuhuan.getGroup(msg.to)
+                    gs = kuohuanhuan.getGroup(msg.to)
                     targets = []
                     for g in gs.members:
                         if _nametarget == g.displayName:
                             targets.append(g.mid)
                     if targets == []:
-                        yuhuan.sendText(msg.to,"Not found")
+                        kuohuanhuan.sendText(msg.to,"Not found")
                     else:
                         for target in targets:
                             try:
-                                h = yuhuan.getContact(target)
-                                yuhuan.sendImageWithURL(msg.to,"http://dl.profile.line-cdn.net/" + h.pictureStatus)
+                                h = kuohuanhuan.getContact(target)
+                                kuohuanhuan.sendImageWithURL(msg.to,"http://dl.profile.line-cdn.net/" + h.pictureStatus)
                             except Exception as error:
                                 print error
-                                yuhuan.sendText(msg.to,"Upload image failed.")
+                                kuohuanhuan.sendText(msg.to,"Upload image failed.")
 
             elif "Pp @" in msg.text:
                 if msg.toType == 2:
                     cover = msg.text.replace("Pp @","")
                     _nametarget = cover.rstrip('  ')
-                    gs = yuhuan.getGroup(msg.to)
+                    gs = kuohuanhuan.getGroup(msg.to)
                     targets = []
                     for g in gs.members:
                         if _nametarget == g.displayName:
                             targets.append(g.mid)
                     if targets == []:
-                        yuhuan.sendText(msg.to,"Not found")
+                        kuohuanhuan.sendText(msg.to,"Not found")
                     else:
                         for target in targets:
                             try:
-                                h = yuhuan.getContact(target)
-                                yuhuan.sendImageWithURL(msg.to,"http://dl.profile.line-cdn.net/" + h.pictureStatus)
+                                h = kuohuanhuan.getContact(target)
+                                kuohuanhuan.sendImageWithURL(msg.to,"http://dl.profile.line-cdn.net/" + h.pictureStatus)
                             except Exception as error:
                                 print error
-                                yuhuan.sendText(msg.to,"Upload image failed.")
+                                kuohuanhuan.sendText(msg.to,"Upload image failed.")
 
             elif msg.text.lower() in ["pap owner","pap creator"]:
                                 link = ["http://dl.profile.line-cdn.net/0hFR-rB8h-GX0QCzWZMOZmKixOFxBnJR81aG9eSTUNREhtOVYqJWgFSWYDR05vOwp7K2sCGTELRUVo"]
                                 pilih = random.choice(link)
-                                yuhuan.sendImageWithURL(msg.to,pilih)
+                                kuohuanhuan.sendImageWithURL(msg.to,pilih)
 
  
             elif "Spam: " in msg.text:
                   bctxt = msg.text.replace("Spam: ", "")
                   t = 40
                   while(t):
-                    yuhuan.sendText(msg.to, (bctxt))
+                    kuohuanhuan.sendText(msg.to, (bctxt))
                     t-=1
 
             elif "Scbc " in msg.text:
                   bctxt = msg.text.replace("Scbc ", "")
-                  orang = yuhuan.getAllContactIds()
+                  orang = kuohuanhuan.getAllContactIds()
                   t = 20
                   for manusia in orang:
                     while(t):
-                      yuhuan.sendText(manusia, (bctxt))
+                      kuohuanhuan.sendText(manusia, (bctxt))
                       t-=1
 
             elif "Cbc " in msg.text:
                   broadcasttxt = msg.text.replace("Cbc ", "") 
-                  orang = yuhuan.getAllContactIds()
+                  orang = kuohuanhuan.getAllContactIds()
                   for manusia in orang:
-                    yuhuan.sendText(manusia, (broadcasttxt))
+                    kuohuanhuan.sendText(manusia, (broadcasttxt))
 
  
             elif 'ig ' in msg.text.lower():
@@ -2793,10 +2793,10 @@ def bot(op):
                     link = "Link: " + "https://www.instagram.com/" + instagram
                     detail = "========INSTAGRAM INFO ========\n"
                     details = "\n========INSTAGRAM INFO ========"
-                    yuhuan.sendText(msg.to, detail + user + user1 + followers + following + post + link + details)
-                    yuhuan.sendImageWithURL(msg.to, tj)
+                    kuohuanhuan.sendText(msg.to, detail + user + user1 + followers + following + post + link + details)
+                    kuohuanhuan.sendImageWithURL(msg.to, tj)
                 except Exception as njer:
-                	yuhuan.sendText(msg.to, str(njer))
+                	kuohuanhuan.sendText(msg.to, str(njer))
                 	
                 	
             elif "Checkig " in msg.text:
@@ -2821,10 +2821,10 @@ def bot(op):
                                 r = x.get(page)
                                 url = re.search(r'"video_url": "([^"]+)"', r.text).group(1)
                                 print(url)
-                                yuhuan.sendVideoWithURL(msg.to,url)
+                                kuohuanhuan.sendVideoWithURL(msg.to,url)
                             else:
                                 print (node['display_src'])
-                                yuhuan.sendImageWithURL(msg.to,node['display_src'])
+                                kuohuanhuan.sendImageWithURL(msg.to,node['display_src'])
                         end_cursor = re.search(r'"end_cursor": "([^"]+)"', r.text).group(1)                	
 
 
@@ -2837,9 +2837,9 @@ def bot(op):
                     html = response.read()
                     soup = BeautifulSoup(html, "html.parser")
                     results = soup.find(attrs={'class':'yt-uix-tile-link'})
-                    yuhuan.sendText(msg.to,'https://www.youtube.com' + results['href'])
+                    kuohuanhuan.sendText(msg.to,'https://www.youtube.com' + results['href'])
                 except:
-                    yuhuan.sendText(msg.to,"Could not find it")
+                    kuohuanhuan.sendText(msg.to,"Could not find it")
                     
                     
             elif 'Youtubevideo ' in msg.text:
@@ -2851,9 +2851,9 @@ def bot(op):
                         html = response.read()
                         soup = BeautifulSoup(html, "html.parser")
                         results = soup.find(attrs={'class': 'yt-uix-tile-link'})
-                        yuhuan.sendVideoWithURL(msg.to,'https://www.youtube.com' + results['href'])
+                        kuohuanhuan.sendVideoWithURL(msg.to,'https://www.youtube.com' + results['href'])
                     except:
-                        yuhuan.sendText(msg.to, "Could not find it")                    
+                        kuohuanhuan.sendText(msg.to, "Could not find it")                    
 
  
             elif "Say " in msg.text:
@@ -2861,29 +2861,29 @@ def bot(op):
                 lang = 'id'
                 tts = gTTS(text=say, lang=lang)
                 tts.save("hasil.mp3")
-                yuhuan.sendAudio(msg.to,"hasil.mp3")
+                kuohuanhuan.sendAudio(msg.to,"hasil.mp3")
 
             elif "Say-en " in msg.text:
                 say = msg.text.replace("Say-en ","")
                 lang = 'en'
                 tts = gTTS(text=say, lang=lang)
                 tts.save("hasil.mp3")
-                yuhuan.sendAudio(msg.to,"hasil.mp3")
+                kuohuanhuan.sendAudio(msg.to,"hasil.mp3")
 
             elif "Say-jp " in msg.text:
                 say = msg.text.replace("Say-jp ","")
                 lang = 'ja'
                 tts = gTTS(text=say, lang=lang)
                 tts.save("hasil.mp3")
-                yuhuan.sendAudio(msg.to,"hasil.mp3")
+                kuohuanhuan.sendAudio(msg.to,"hasil.mp3")
 
             elif "Say welcome" in msg.text:
-                gs = yuhuan.getGroup(msg.to)
+                gs = kuohuanhuan.getGroup(msg.to)
                 say = msg.text.replace("Say welcome","Selamat Datang Di "+ gs.name)
                 lang = 'id'
                 tts = gTTS(text=say, lang=lang)
                 tts.save("hasil.mp3")
-                yuhuan.sendAudio(msg.to,"hasil.mp3")
+                kuohuanhuan.sendAudio(msg.to,"hasil.mp3")
                 
             elif "lurk on" == msg.text.lower():
                #if msg.from_ in admin:
@@ -2900,7 +2900,7 @@ def bot(op):
                         wait2['ROM'][msg.to] = {}
                         with open('sider.json', 'w') as fp:
                          json.dump(wait2, fp, sort_keys=True, indent=4)
-                         yuhuan.sendText(msg.to,"Lurking already on")
+                         kuohuanhuan.sendText(msg.to,"Lurking already on")
                 else:
                     try:
                             del wait2['readPoint'][msg.to]
@@ -2914,14 +2914,14 @@ def bot(op):
                     wait2['ROM'][msg.to] = {}
                     with open('sider.json', 'w') as fp:
                      json.dump(wait2, fp, sort_keys=True, indent=4)
-                     yuhuan.sendText(msg.to, "Set the lastseens' point (｀・ω・´)\n\n" + datetime.now().strftime('%H:%M:%S'))
+                     kuohuanhuan.sendText(msg.to, "Set the lastseens' point (｀・ω・´)\n\n" + datetime.now().strftime('%H:%M:%S'))
                      print wait2
 
 
             elif "lurk off" == msg.text.lower():
                #if msg.from_ in admin:
                 if msg.to not in wait2['readPoint']:
-                    yuhuan.sendText(msg.to,"Lurking already off")
+                    kuohuanhuan.sendText(msg.to,"Lurking already off")
                 else:
                     try:
                             del wait2['readPoint'][msg.to]
@@ -2929,7 +2929,7 @@ def bot(op):
                             del wait2['setTime'][msg.to]
                     except:
                           pass
-                    yuhuan.sendText(msg.to, "Delete reading point:\n" + datetime.now().strftime('%H:%M:%S'))
+                    kuohuanhuan.sendText(msg.to, "Delete reading point:\n" + datetime.now().strftime('%H:%M:%S'))
 
 
 
@@ -2938,13 +2938,13 @@ def bot(op):
             	#if msg.from_ in admin:
                     if msg.to in wait2['readPoint']:
                         if wait2["ROM"][msg.to].items() == []:
-                             yuhuan.sendText(msg.to, "Lurkers:\nNone")
+                             kuohuanhuan.sendText(msg.to, "Lurkers:\nNone")
                         else:
                             chiya = []
                             for rom in wait2["ROM"][msg.to].items():
                                 chiya.append(rom[1])
                                
-                            cmem = yuhuan.getContacts(chiya)
+                            cmem = kuohuanhuan.getContacts(chiya)
                             zx = ""
                             zxc = ""
                             zx2 = []
@@ -2966,36 +2966,36 @@ def bot(op):
                         print lol
                         msg.contentMetadata = lol
                         try:
-                          yuhuan.sendMessage(msg)
-                          yuhuan.sendText(msg.to, "Jika sudah lihat sider please\ntulis lurk on lagi kak  (｀・ω・´)\n \n"  +  datetime.now().strftime('%H:%M:%S'))
+                          kuohuanhuan.sendMessage(msg)
+                          kuohuanhuan.sendText(msg.to, "Jika sudah lihat sider please\ntulis lurk on lagi kak  (｀・ω・´)\n \n"  +  datetime.now().strftime('%H:%M:%S'))
                         except Exception as error:
                               print error
                         pass
                
                     else:
-                        yuhuan.sendText(msg.to, "Lurking has not been set (｀・ω・´)\n \n"  +  datetime.now().strftime('%H:%M:%S'))    
+                        kuohuanhuan.sendText(msg.to, "Lurking has not been set (｀・ω・´)\n \n"  +  datetime.now().strftime('%H:%M:%S'))    
 
 
             elif msg.text.lower() in ["hi","hai","halo","hallo"]:
-                    beb = "Hi Sayang 😘 " +yuhuan.getContact(msg.from_).displayName + " 􀸂􀆇starry heart􏿿"
-                    yuhuan.sendText(msg.to,beb)
+                    beb = "Hi Sayang 😘 " +kuohuanhuan.getContact(msg.from_).displayName + " 􀸂􀆇starry heart􏿿"
+                    kuohuanhuan.sendText(msg.to,beb)
 
 
 
             elif "playstore " in msg.text.lower():
                 tob = msg.text.lower().replace("playstore ","")
-                yuhuan.sendText(msg.to,"Sedang Mencari...")
-                yuhuan.sendText(msg.to,"Title : "+tob+"\nSource : Google Play\nLink : https://play.google.com/store/search?q=" + tob)
-                yuhuan.sendText(msg.to,"鏈接成功 (^_^)")
+                kuohuanhuan.sendText(msg.to,"Sedang Mencari...")
+                kuohuanhuan.sendText(msg.to,"Title : "+tob+"\nSource : Google Play\nLink : https://play.google.com/store/search?q=" + tob)
+                kuohuanhuan.sendText(msg.to,"鏈接成功 (^_^)")
 
 
             elif "Mid @" in msg.text:
                 _name = msg.text.replace("Mid @","")
                 _nametarget = _name.rstrip(' ')
-                gs = yuhuan.getGroup(msg.to)
+                gs = kuohuanhuan.getGroup(msg.to)
                 for g in gs.members:
                     if _nametarget == g.displayName:
-                        yuhuan.sendText(msg.to, g.mid)
+                        kuohuanhuan.sendText(msg.to, g.mid)
                     else:
                         pass
 
@@ -3003,30 +3003,30 @@ def bot(op):
             elif "Mybio " in msg.text:
                     string = msg.text.replace("Mybio ","")
                     if len(string.decode('utf-8')) <= 500:
-                        profile = yuhuan.getProfile()
+                        profile = kuohuanhuan.getProfile()
                         profile.statusMessage = string
-                        yuhuan.updateProfile(profile)
-                        yuhuan.sendText(msg.to,"Done")
+                        kuohuanhuan.updateProfile(profile)
+                        kuohuanhuan.sendText(msg.to,"Done")
 
             elif "Myname " in msg.text:
 		if msg.from_ in Creator:
                     string = msg.text.replace("Myname ","")
                     if len(string.decode('utf-8')) <= 5000:
-                        profile = yuhuan.getProfile()
+                        profile = kuohuanhuan.getProfile()
                         profile.displayName = string
-                        yuhuan.updateProfile(profile)
-                        yuhuan.sendText(msg.to,"Done")
+                        kuohuanhuan.updateProfile(profile)
+                        kuohuanhuan.sendText(msg.to,"Done")
 
 
 
             elif msg.text.lower() in ["mymid","myid"]:
-                middd = "Name : " +yuhuan.getContact(msg.from_).displayName + "\nMid : " +msg.from_
-                yuhuan.sendText(msg.to,middd)
+                middd = "Name : " +kuohuanhuan.getContact(msg.from_).displayName + "\nMid : " +msg.from_
+                kuohuanhuan.sendText(msg.to,middd)
 
             elif msg.text.lower() in ["me"]:
                 msg.contentType = 13
                 msg.contentMetadata = {'mid': msg.from_}
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif "apakah " in msg.text:
                 apk = msg.text.replace("apakah ","")
@@ -3035,7 +3035,7 @@ def bot(op):
                 lang = 'id'
                 tts = gTTS(text=p, lang=lang)
                 tts.save("hasil.mp3")
-                yuhuan.sendAudio(msg.to,"hasil.mp3")
+                kuohuanhuan.sendAudio(msg.to,"hasil.mp3")
                 
             elif "hari " in msg.text:
                 apk = msg.text.replace("hari ","")
@@ -3044,7 +3044,7 @@ def bot(op):
                 lang = 'id'
                 tts = gTTS(text=p, lang=lang)
                 tts.save("hasil.mp3")
-                yuhuan.sendAudio(msg.to,"hasil.mp3")   
+                kuohuanhuan.sendAudio(msg.to,"hasil.mp3")   
 
 
             elif "berapa " in msg.text:
@@ -3054,7 +3054,7 @@ def bot(op):
                 lang = 'id'
                 tts = gTTS(text=p, lang=lang)
                 tts.save("hasil.mp3")
-                yuhuan.sendAudio(msg.to,"hasil.mp3")
+                kuohuanhuan.sendAudio(msg.to,"hasil.mp3")
                 
             elif "berapakah " in msg.text:
                 apk = msg.text.replace("berapakah ","")
@@ -3063,7 +3063,7 @@ def bot(op):
                 lang = 'id'
                 tts = gTTS(text=p, lang=lang)
                 tts.save("hasil.mp3")
-                yuhuan.sendAudio(msg.to,"hasil.mp3")                
+                kuohuanhuan.sendAudio(msg.to,"hasil.mp3")                
 
             elif "kapan " in msg.text:
                 apk = msg.text.replace("kapan ","")
@@ -3072,18 +3072,18 @@ def bot(op):
                 lang = 'id'
                 tts = gTTS(text=p, lang=lang)
                 tts.save("hasil.mp3")
-                yuhuan.sendAudio(msg.to,"hasil.mp3")
+                kuohuanhuan.sendAudio(msg.to,"hasil.mp3")
 
  
             elif msg.text in ["Simisimi on","Simisimi:on"]:
                 settings["simiSimi"][msg.to] = True
                 wait["Simi"] = True
-                yuhuan.sendText(msg.to," Simisimi Di Aktifkan")
+                kuohuanhuan.sendText(msg.to," Simisimi Di Aktifkan")
                 
             elif msg.text in ["Simisimi off","Simisimi:off"]:
                 settings["simiSimi"][msg.to] = False
                 wait["Simi"] = False
-                yuhuan.sendText(msg.to,"Simisimi Di Nonaktifkan")
+                kuohuanhuan.sendText(msg.to,"Simisimi Di Nonaktifkan")
 
  
             elif "Image " in msg.text:
@@ -3095,7 +3095,7 @@ def bot(op):
                 path = random.choice(items)
                 print path
                 try:
-                    yuhuan.sendImageWithURL(msg.to,path)
+                    kuohuanhuan.sendImageWithURL(msg.to,path)
                 except:
                     pass
  
@@ -3111,7 +3111,7 @@ def bot(op):
                         for a in soup.select('.yt-lockup-title > a[title]'):
                             if '&list=' not in a['href']:
                                 hasil += ''.join((a['title'],'\nUrl : http://www.youtube.com' + a['href'],'\n\n'))
-                        yuhuan.sendText(msg.to,hasil)
+                        kuohuanhuan.sendText(msg.to,hasil)
                         print '[Command] Youtube Search'
 
 
@@ -3122,7 +3122,7 @@ def bot(op):
                 hasil = translator.translate(isi, dest='id')
                 A = hasil.text
                 A = A.encode('utf-8')
-                yuhuan.sendText(msg.to, A)
+                kuohuanhuan.sendText(msg.to, A)
 
             elif "Tr-en " in msg.text:
                 isi = msg.text.replace("Tr-en ","")
@@ -3130,7 +3130,7 @@ def bot(op):
                 hasil = translator.translate(isi, dest='en')
                 A = hasil.text
                 A = A.encode('utf-8')
-                yuhuan.sendText(msg.to, A)
+                kuohuanhuan.sendText(msg.to, A)
                 
             elif "Tr-th " in msg.text:
                 isi = msg.text.replace("Tr-th ","")
@@ -3138,7 +3138,7 @@ def bot(op):
                 hasil = translator.translate(isi, dest='th')
                 A = hasil.text
                 A = A.encode('utf-8')
-                yuhuan.sendText(msg.to, A)                
+                kuohuanhuan.sendText(msg.to, A)                
 
             
             elif "Id@en" in msg.text:
@@ -3152,7 +3152,7 @@ def bot(op):
                 page = urllib2.urlopen(request).read()
                 result = page[page.find(cari_hasil)+len(cari_hasil):]
                 result = result.split("<")[0]
-                yuhuan.sendText(msg.to,"----Dari Indonesia----\n" + "" + kata + "\n\n----Ke Inggris----\n" + "" + result)
+                kuohuanhuan.sendText(msg.to,"----Dari Indonesia----\n" + "" + kata + "\n\n----Ke Inggris----\n" + "" + result)
 
 
             elif "En@id" in msg.text:
@@ -3166,7 +3166,7 @@ def bot(op):
                 page = urllib2.urlopen(request).read()
                 result = page[page.find(cari_hasil)+len(cari_hasil):]
                 result = result.split("<")[0]
-                yuhuan.sendText(msg.to,"----Dari Inggris----\n" + "" + kata + "\n\n----Ke Indonesia----\n" + "" + result)
+                kuohuanhuan.sendText(msg.to,"----Dari Inggris----\n" + "" + kata + "\n\n----Ke Indonesia----\n" + "" + result)
                 
             
             elif "Id@th" in msg.text:
@@ -3180,7 +3180,7 @@ def bot(op):
                 page = urllib2.urlopen(request).read()
                 result = page[page.find(cari_hasil)+len(cari_hasil):]
                 result = result.split("<")[0]
-                yuhuan.sendText(msg.to,"----Dari Indonesia----\n" + "" + kata + "\n\n----Ke Thailand----\n" + "" + result)
+                kuohuanhuan.sendText(msg.to,"----Dari Indonesia----\n" + "" + kata + "\n\n----Ke Thailand----\n" + "" + result)
                 
             
             elif "Th@id" in msg.text:
@@ -3194,21 +3194,21 @@ def bot(op):
                 page = urllib2.urlopen(request).read()
                 result = page[page.find(cari_hasil)+len(cari_hasil):]
                 result = result.split("<")[0]
-                yuhuan.sendText(msg.to,"----Dari Thailand----\n" + "" + kata + "\n\n----Ke Indonesia----\n" + "" + result)                
+                kuohuanhuan.sendText(msg.to,"----Dari Thailand----\n" + "" + kata + "\n\n----Ke Indonesia----\n" + "" + result)                
  
             elif msg.text in ["Friendlist"]:    
-                contactlist = yuhuan.getAllContactIds()
-                kontak = yuhuan.getContacts(contactlist)
+                contactlist = kuohuanhuan.getAllContactIds()
+                kontak = kuohuanhuan.getContacts(contactlist)
                 num=1
                 msgs="═════════List Friend═════════"
                 for ids in kontak:
                     msgs+="\n[%i] %s" % (num, ids.displayName)
                     num=(num+1)
                 msgs+="\n═════════List Friend═════════\n\nTotal Friend : %i" % len(kontak)
-                yuhuan.sendText(msg.to, msgs)
+                kuohuanhuan.sendText(msg.to, msgs)
 
             elif msg.text in ["Memlist"]:   
-                kontak = yuhuan.getGroup(msg.to)
+                kontak = kuohuanhuan.getGroup(msg.to)
                 group = kontak.members
                 num=1
                 msgs="═════════List Member═�����═══════-"
@@ -3216,7 +3216,7 @@ def bot(op):
                     msgs+="\n[%i] %s" % (num, ids.displayName)
                     num=(num+1)
                 msgs+="\n═════════List Member═════════\n\nTotal Members : %i" % len(group)
-                yuhuan.sendText(msg.to, msgs)
+                kuohuanhuan.sendText(msg.to, msgs)
 
             
 
@@ -3225,58 +3225,58 @@ def bot(op):
                 print "[Command]dp executing"
                 _name = msg.text.replace("Getvid @","")
                 _nametarget = _name.rstrip('  ')
-                gs = yuhuan.getGroup(msg.to)
+                gs = kuohuanhuan.getGroup(msg.to)
                 targets = []
                 for g in gs.members:
                     if _nametarget == g.displayName:
                         targets.append(g.mid)
                 if targets == []:
-                    yuhuan.sendText(msg.to,"Contact not found")
+                    kuohuanhuan.sendText(msg.to,"Contact not found")
                 else:
                     for target in targets:
                         try:
-                            contact = yuhuan.getContact(target)
+                            contact = kuohuanhuan.getContact(target)
                             path = "http://dl.profile.line-cdn.net/" + contact.pictureStatus
-                            yuhuan.sendVideoWithURL(msg.to, path)
+                            kuohuanhuan.sendVideoWithURL(msg.to, path)
                         except Exception as e:
                             raise e
                 print "[Command]dp executed"
 
 
             elif "Getgroup image" in msg.text:
-                group = yuhuan.getGroup(msg.to)
+                group = kuohuanhuan.getGroup(msg.to)
                 path = "http://dl.profile.line-cdn.net/" + group.pictureStatus
-                yuhuan.sendImageWithURL(msg.to,path)
+                kuohuanhuan.sendImageWithURL(msg.to,path)
 
             elif "Urlgroup image" in msg.text:
-                group = yuhuan.getGroup(msg.to)
+                group = kuohuanhuan.getGroup(msg.to)
                 path = "http://dl.profile.line-cdn.net/" + group.pictureStatus
-                yuhuan.sendText(msg.to,path)
+                kuohuanhuan.sendText(msg.to,path)
  
             elif "Name" in msg.text:
                 key = eval(msg.contentMetadata["MENTION"])
                 key1 = key["MENTIONEES"][0]["M"]
-                contact = yuhuan.getContact(key1)
-                cu = yuhuan.channel.getCover(key1)
+                contact = kuohuanhuan.getContact(key1)
+                cu = kuohuanhuan.channel.getCover(key1)
                 try:
-                    yuhuan.sendText(msg.to, "===[DisplayName]===\n" + contact.displayName)
+                    kuohuanhuan.sendText(msg.to, "===[DisplayName]===\n" + contact.displayName)
                 except:
-                    yuhuan.sendText(msg.to, "===[DisplayName]===\n" + contact.displayName)
+                    kuohuanhuan.sendText(msg.to, "===[DisplayName]===\n" + contact.displayName)
 
 
             elif "Profile" in msg.text:
                 key = eval(msg.contentMetadata["MENTION"])
                 key1 = key["MENTIONEES"][0]["M"]
-                contact = yuhuan.getContact(key1)
-                cu = yuhuan.channel.getCover(key1)
+                contact = kuohuanhuan.getContact(key1)
+                cu = kuohuanhuan.channel.getCover(key1)
                 path = str(cu)
                 image = "http://dl.profile.line-cdn.net/" + contact.pictureStatus
                 try:
-                    yuhuan.sendText(msg.to,"Nama :\n" + contact.displayName + "\n\nBio :\n" + contact.statusMessage)
-                    yuhuan.sendText(msg.to,"Profile Picture " + contact.displayName)
-                    yuhuan.sendImageWithURL(msg.to,image)
-                    yuhuan.sendText(msg.to,"Cover " + contact.displayName)
-                    yuhuan.sendImageWithURL(msg.to,path)
+                    kuohuanhuan.sendText(msg.to,"Nama :\n" + contact.displayName + "\n\nBio :\n" + contact.statusMessage)
+                    kuohuanhuan.sendText(msg.to,"Profile Picture " + contact.displayName)
+                    kuohuanhuan.sendImageWithURL(msg.to,image)
+                    kuohuanhuan.sendText(msg.to,"Cover " + contact.displayName)
+                    kuohuanhuan.sendImageWithURL(msg.to,path)
                 except:
                     pass
 
@@ -3284,37 +3284,37 @@ def bot(op):
             elif "Contact" in msg.text:
                 key = eval(msg.contentMetadata["MENTION"])
                 key1 = key["MENTIONEES"][0]["M"]                
-                mmid = yuhuan.getContact(key1)
+                mmid = kuohuanhuan.getContact(key1)
                 msg.contentType = 13
                 msg.contentMetadata = {"mid": key1}
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
 
             elif "Info" in msg.text:
                 key = eval(msg.contentMetadata["MENTION"])
                 key1 = key["MENTIONEES"][0]["M"]
-                contact = yuhuan.getContact(key1)
-                cu = yuhuan.channel.getCover(key1)
+                contact = kuohuanhuan.getContact(key1)
+                cu = kuohuanhuan.channel.getCover(key1)
                 try:
-                    yuhuan.sendText(msg.to,"Nama :\n" + contact.displayName + "\n\nMid :\n" + contact.mid + "\n\nBio :\n" + contact.statusMessage + "\n\nProfile Picture :\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n\nHeader :\n" + str(cu))
+                    kuohuanhuan.sendText(msg.to,"Nama :\n" + contact.displayName + "\n\nMid :\n" + contact.mid + "\n\nBio :\n" + contact.statusMessage + "\n\nProfile Picture :\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n\nHeader :\n" + str(cu))
                 except:
-                    yuhuan.sendText(msg.to,"Nama :\n" + contact.displayName + "\n\nMid :\n" + contact.mid + "\n\nBio :\n" + contact.statusMessage + "\n\nProfile Picture :\n" + str(cu))
+                    kuohuanhuan.sendText(msg.to,"Nama :\n" + contact.displayName + "\n\nMid :\n" + contact.mid + "\n\nBio :\n" + contact.statusMessage + "\n\nProfile Picture :\n" + str(cu))
 
 
             elif "Bio" in msg.text:
                 key = eval(msg.contentMetadata["MENTION"])
                 key1 = key["MENTIONEES"][0]["M"]
-                contact = yuhuan.getContact(key1)
-                cu = yuhuan.channel.getCover(key1)
+                contact = kuohuanhuan.getContact(key1)
+                cu = kuohuanhuan.channel.getCover(key1)
                 try:
-                    yuhuan.sendText(msg.to, "===[StatusMessage]===\n" + contact.statusMessage)
+                    kuohuanhuan.sendText(msg.to, "===[StatusMessage]===\n" + contact.statusMessage)
                 except:
-                    yuhuan.sendText(msg.to, "===[StatusMessage]===\n" + contact.statusMessage)
+                    kuohuanhuan.sendText(msg.to, "===[StatusMessage]===\n" + contact.statusMessage)
 
 
             elif msg.text.lower() == 'runtime':
                 eltime = time.time() - mulai
                 van = "Bot Sudah Berjalan Selama :\n"+waktu(eltime)
-                yuhuan.sendText(msg.to,van)
+                kuohuanhuan.sendText(msg.to,van)
                 
                  
             elif "Checkdate " in msg.text:
@@ -3326,7 +3326,7 @@ def bot(op):
                 usia = data["data"]["usia"]
                 ultah = data["data"]["ultah"]
                 zodiak = data["data"]["zodiak"]
-                yuhuan.sendText(msg.to,"========== I N F O R M A S I ==========\n"+"Date Of Birth : "+lahir+"\nAge : "+usia+"\nUltah : "+ultah+"\nZodiak : "+zodiak+"\n========== I N F O R M A S I ==========")
+                kuohuanhuan.sendText(msg.to,"========== I N F O R M A S I ==========\n"+"Date Of Birth : "+lahir+"\nAge : "+usia+"\nUltah : "+ultah+"\nZodiak : "+zodiak+"\n========== I N F O R M A S I ==========")
                 
    
             elif msg.text in ["Kalender","Time","Waktu"]:
@@ -3343,85 +3343,85 @@ def bot(op):
                 for k in range(0, len(bulan)):
                     if bln == str(k): bln = bulan[k-1]
                 rst = hasil + ", " + inihari.strftime('%d') + " - " + bln + " - " + inihari.strftime('%Y') + "\nJam : [ " + inihari.strftime('%H:%M:%S') + " ]"
-                yuhuan.sendText(msg.to, rst)                
+                kuohuanhuan.sendText(msg.to, rst)                
                  
                 
             elif "SearchID " in msg.text:
                 userid = msg.text.replace("SearchID ","")
-                contact = yuhuan.findContactsByUserid(userid)
+                contact = kuohuanhuan.findContactsByUserid(userid)
                 msg.contentType = 13
                 msg.contentMetadata = {'mid': contact.mid}
-                yuhuan.sendMessage(msg)
+                kuohuanhuan.sendMessage(msg)
                 
             elif "Searchid " in msg.text:
                 userid = msg.text.replace("Searchid ","")
-                contact = yuhuan.findContactsByUserid(userid)
+                contact = kuohuanhuan.findContactsByUserid(userid)
                 msg.contentType = 13
                 msg.contentMetadata = {'mid': contact.mid}
-                yuhuan.sendMessage(msg)       
+                kuohuanhuan.sendMessage(msg)       
                 
                 
             elif "removechat" in msg.text.lower():
                 if msg.from_ in admin:
                     try:
-                        yuhuan.removeAllMessages(op.param2)
+                        kuohuanhuan.removeAllMessages(op.param2)
                         print "[Command] Remove Chat"
-                        yuhuan.sendText(msg.to,"Done")
+                        kuohuanhuan.sendText(msg.to,"Done")
                     except Exception as error:
                         print error
-                        yuhuan.sendText(msg.to,"Error")      
+                        kuohuanhuan.sendText(msg.to,"Error")      
                         
                         
             elif "Invitemeto " in msg.text:
                 if msg.from_ in admin:
                     gid = msg.text.replace("Invitemeto ","")
                     if gid == "":
-                        yuhuan.sendText(msg.to,"Invalid group id")
+                        kuohuanhuan.sendText(msg.to,"Invalid group id")
                     else:
                         try:
-                            yuhuan.findAndAddContactsByMid(msg.from_)
-                            yuhuan.inviteIntoGroup(gid,[msg.from_])
+                            kuohuanhuan.findAndAddContactsByMid(msg.from_)
+                            kuohuanhuan.inviteIntoGroup(gid,[msg.from_])
                         except:
-                            yuhuan.sendText(msg.to,"Mungkin Saya Tidak Di Dalaam Grup Itu")
+                            kuohuanhuan.sendText(msg.to,"Mungkin Saya Tidak Di Dalaam Grup Itu")
 
 
             elif msg.text in ["Glist"]:
-                yuhuan.sendText(msg.to, "Tunggu Sebentar. . .")                    
-                gid = yuhuan.getGroupIdsJoined()
+                kuohuanhuan.sendText(msg.to, "Tunggu Sebentar. . .")                    
+                gid = kuohuanhuan.getGroupIdsJoined()
                 h = ""
                 for i in gid:
-                    h += "╠➩" + "%s\n" % (yuhuan.getGroup(i).name +" ~> ["+str(len(yuhuan.getGroup(i).members))+"]")
-                yuhuan.sendText(msg.to,"╔═════════════════════════\n║          ☆☞ LIST GROUPS☜☆\n╠═════════════════════════\n" + h + "╠═════════════════════════" + "\n║ Total Groups =" +" ["+str(len(gid))+"]\n╚═════════════════════════")
+                    h += "╠➩" + "%s\n" % (kuohuanhuan.getGroup(i).name +" ~> ["+str(len(kuohuanhuan.getGroup(i).members))+"]")
+                kuohuanhuan.sendText(msg.to,"╔═════════════════════════\n║          ☆☞ LIST GROUPS☜☆\n╠═════════════════════════\n" + h + "╠═════════════════════════" + "\n║ Total Groups =" +" ["+str(len(gid))+"]\n╚═════════════════════════")
 
             elif msg.text in ["Glistmid"]:   
-                gruplist = yuhuan.getGroupIdsJoined()
-                kontak = yuhuan.getGroups(gruplist)
+                gruplist = kuohuanhuan.getGroupIdsJoined()
+                kontak = kuohuanhuan.getGroups(gruplist)
                 num=1
                 msgs="═════════List GrupMid═════════"
                 for ids in kontak:
                     msgs+="\n[%i] %s" % (num, ids.id)
                     num=(num+1)
                 msgs+="\n═════════List GrupMid═════════\n\nTotal Grup : %i" % len(kontak)
-                yuhuan.sendText(msg.to, msgs)
+                kuohuanhuan.sendText(msg.to, msgs)
 
 
 
             elif "Google: " in msg.text:
                     a = msg.text.replace("Google: ","")
                     b = urllib.quote(a)
-                    yuhuan.sendText(msg.to,"Sedang Mencari...")
-                    yuhuan.sendText(msg.to, "https://www.google.com/" + b)
-                    yuhuan.sendText(msg.to,"Itu Dia Linknya. . .")     
+                    kuohuanhuan.sendText(msg.to,"Sedang Mencari...")
+                    kuohuanhuan.sendText(msg.to, "https://www.google.com/" + b)
+                    kuohuanhuan.sendText(msg.to,"Itu Dia Linknya. . .")     
 
 
             elif "Details group: " in msg.text:
                 if msg.from_ in admin:
                     gid = msg.text.replace("Details group: ","")
                     if gid in [""," "]:
-                        yuhuan.sendText(msg.to,"Grup id tidak valid")
+                        kuohuanhuan.sendText(msg.to,"Grup id tidak valid")
                     else:
                         try:
-                            groups = yuhuan.getGroup(gid)
+                            groups = kuohuanhuan.getGroup(gid)
                             if groups.members is not None:
                                 members = str(len(groups.members))
                             else:
@@ -3431,49 +3431,49 @@ def bot(op):
                             else:
                                 pendings = "0"
                             h = "[" + groups.name + "]\n -+GroupID : " + gid + "\n -+Members : " + members + "\n -+MembersPending : " + pendings + "\n -+Creator : " + groups.creator.displayName + "\n -+GroupPicture : http://dl.profile.line.naver.jp/" + groups.pictureStatus
-                            yuhuan.sendText(msg.to,h)
+                            kuohuanhuan.sendText(msg.to,h)
                         except Exception as error:
-                            yuhuan.sendText(msg.to,(error))
+                            kuohuanhuan.sendText(msg.to,(error))
             
             elif "Cancel invite: " in msg.text:
                 if msg.from_ in admin:
                     gids = msg.text.replace("Cancel invite: ","")
-                    gid = yuhuan.getGroup(gids)
+                    gid = kuohuanhuan.getGroup(gids)
                     for i in gid:
                         if i is not None:
                             try:
-                                yuhuan.rejectGroupInvitation(i)
+                                kuohuanhuan.rejectGroupInvitation(i)
                             except:
-                                yuhuan.sendText(msg.to,"Error!")
+                                kuohuanhuan.sendText(msg.to,"Error!")
                                 break
                         else:
                             break
                     if gid is not None:
-                        yuhuan.sendText(msg.to,"成功拒絕了群組邀請 " + gid.name)
+                        kuohuanhuan.sendText(msg.to,"成功拒絕了群組邀請 " + gid.name)
                     else:
-                        yuhuan.sendText(msg.to,"未找到群組")
+                        kuohuanhuan.sendText(msg.to,"未找到群組")
             
             elif msg.text in ["Acc invite"]:
                 if msg.from_ in admin:
-                    gid = yuhuan.getGroupIdsInvited()
+                    gid = kuohuanhuan.getGroupIdsInvited()
                     _list = ""
                     for i in gid:
                         if i is not None:
-                            gids = yuhuan.getGroup(i)
+                            gids = kuohuanhuan.getGroup(i)
                             _list += gids.name
-                            yuhuan.acceptGroupInvitation(i)
+                            kuohuanhuan.acceptGroupInvitation(i)
                         else:
                             break
                     if gid is not None:
-                        yuhuan.sendText(msg.to,"成功收到了群組的所有邀請 :\n" + _list)
+                        kuohuanhuan.sendText(msg.to,"成功收到了群組的所有邀請 :\n" + _list)
                     else:
-                        yuhuan.sendText(msg.to,"目前沒有待處理的群組")  
+                        kuohuanhuan.sendText(msg.to,"目前沒有待處理的群組")  
 
 
             elif "Gif gore" in msg.text:
             	gif = ("https://media.giphy.com/media/l2JHVsQiOZrNMGzYs/giphy.gif","https://media.giphy.com/media/OgltQ2hbilzJS/200w.gif")
                 gore = random.choice(gif)
-                yuhuan.sendGifWithURL(msg.to,gore)
+                kuohuanhuan.sendGifWithURL(msg.to,gore)
                 
 
                 
@@ -3486,10 +3486,10 @@ def bot(op):
                 for target in targets:
                     try:
                         mimic["target"][target] = True
-                        yuhuan.sendText(msg.to,"目標已添加!")
+                        kuohuanhuan.sendText(msg.to,"目標已添加!")
                         break
                     except:
-                        yuhuan.sendText(msg.to,"Fail !")
+                        kuohuanhuan.sendText(msg.to,"Fail !")
                         break
                     
             elif ("Micdel " in msg.text):
@@ -3501,45 +3501,45 @@ def bot(op):
                 for target in targets:
                     try:
                         del mimic["target"][target]
-                        yuhuan.sendText(msg.to,"目標已刪除!")
+                        kuohuanhuan.sendText(msg.to,"目標已刪除!")
                         break
                     except:
-                        yuhuan.sendText(msg.to,"Fail !")
+                        kuohuanhuan.sendText(msg.to,"Fail !")
                         break
                     
             elif msg.text in ["Miclist"]:
                         if mimic["target"] == {}:
-                            yuhuan.sendText(msg.to,"Nothing")
+                            kuohuanhuan.sendText(msg.to,"Nothing")
                         else:
                             mc = "Target Mimic User:\n"
                             for mi_d in mimic["target"]:
-                                mc += "?? "+yuhuan.getContact(mi_d).displayName + "\n"
-                            yuhuan.sendText(msg.to,mc)
+                                mc += "?? "+kuohuanhuan.getContact(mi_d).displayName + "\n"
+                            kuohuanhuan.sendText(msg.to,mc)
 
             elif "Mimic target " in msg.text:
                         if mimic["copy"] == True:
                             siapa = msg.text.replace("Mimic target ","")
                             if siapa.rstrip(' ') == "me":
                                 mimic["copy2"] = "me"
-                                yuhuan.sendText(msg.to,"Mimic change to me")
+                                kuohuanhuan.sendText(msg.to,"Mimic change to me")
                             elif siapa.rstrip(' ') == "target":
                                 mimic["copy2"] = "target"
-                                yuhuan.sendText(msg.to,"Mimic change to target")
+                                kuohuanhuan.sendText(msg.to,"Mimic change to target")
                             else:
-                                yuhuan.sendText(msg.to,"I dont know")
+                                kuohuanhuan.sendText(msg.to,"I dont know")
             
             elif "Mimic " in msg.text:
                 cmd = msg.text.replace("Mimic ","")
                 if cmd == "on":
                     if mimic["status"] == False:
                         mimic["status"] = True
-                        yuhuan.sendText(msg.to,"Reply Message on")
+                        kuohuanhuan.sendText(msg.to,"Reply Message on")
                     else:
-                        yuhuan.sendText(msg.to,"Sudah on")
+                        kuohuanhuan.sendText(msg.to,"Sudah on")
                 elif cmd == "off":
                     if mimic["status"] == True:
                         mimic["status"] = False
-                        yuhuan.sendText(msg.to,"Reply Message off")
+                        kuohuanhuan.sendText(msg.to,"Reply Message off")
 
 
 
@@ -3553,13 +3553,13 @@ def bot(op):
 
 while True:
     try:
-        Ops = yuhuan.fetchOps(yuhuan.Poll.rev, 5)
+        Ops = kuohuanhuan.fetchOps(kuohuanhuan.Poll.rev, 5)
     except EOFError:
-        raise Exception("It might be wrong revision\n" + str(yuhuan.Poll.rev))
+        raise Exception("It might be wrong revision\n" + str(kuohuanhuan.Poll.rev))
 
     for Op in Ops:
         if (Op.type != OpType.END_OF_OPERATION):
-            yuhuan.Poll.rev = max(yuhuan.Poll.rev, Op.revision)
+            kuohuanhuan.Poll.rev = max(kuohuanhuan.Poll.rev, Op.revision)
             bot(Op)
 
 #End

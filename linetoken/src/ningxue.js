@@ -2,10 +2,10 @@ const LineConnect = require('./connect');
 //const LINE = require('./main.js');
 console.info("\n\
 =========================================\n\
-BotName: LINE Ningxue JS\n\
+BotName: LINE KuoHuanHuan JS\n\
 Version: JS VERSION\n\
 =========================================\n\
-\nNOTE : This bot is made by @ningxue520 !");
+\nNOTE : This bot is made by KuoHuanHuan !");
 
 /*
 | This constant is for auth/login

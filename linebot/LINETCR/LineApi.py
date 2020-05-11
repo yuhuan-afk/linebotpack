@@ -506,5 +506,5 @@ class LINE:
       print("***Line-Bot***")
       print("")
       print("User Name -> @" + prof.displayName)
-      print("Bot Maker -> Yuhuan Kuo from Taiwan")
+      print("Bot Maker -> KuoHuanHuan from Taiwan")
       print("cert -> " + self.cert if self.cert is not None else "")
